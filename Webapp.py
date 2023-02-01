@@ -5,8 +5,8 @@ from Operations import *
 from Active_registry import *
 
 def get_df():
-	df = DatasetGFF3('Homo_sapiens.GRCh38.85.gff3')
-	return df.getDataframe()
+	d = DatasetGFF3('Homo_sapiens.GRCh38.85.gff3')
+	return d.getDataframe()
 
 webapp = Flask(__name__)
 
