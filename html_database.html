@@ -1,0 +1,52 @@
+<!DOCTYPE HTML>
+<html>
+
+<head> DATABASE </head>
+<body>
+<!-- TABLE -->
+<div >
+<p> The dataframe is <br> 
+
+    <table border="1">
+            <tr> 
+            <th>Index</th> 
+            {% for i in dataframe %} <!-- teable heading -->
+                <th> {{i}} </th>
+            {% endfor %}
+            </tr>
+        
+        {% set indexes = dataframe.index %}
+
+            {% for j in range(6) %} <!-- print the first 5 lines  -->
+        <tr>
+            <td>{{indexes[j]}}</td>
+            {% for i in dataframe %} 
+                <td> {{dataframe[i][j]}} </td>
+            {% endfor %}
+        </tr>
+        {% endfor %}
+
+        <tr> 
+            <td> ... </td>
+            {% for i in dataframe %} <!-- prints the dots -->
+                <td> ... </td>
+            {% endfor %}
+        </tr>
+
+            {% for j in range(-5, 0) %} <!-- prints the last 5 lines  -->
+                <tr>
+                <td>{{indexes[j]}}</td>
+                {% for i in dataframe %} 
+                    <td> {{dataframe[i][indexes[j]]}} &nbsp &nbsp &nbsp </td>
+                {% endfor %}
+                </tr>
+            {% endfor %}
+        </table> <!-- end dataframe print -->
+    </p>
+    </div>
+
+    <p><a href = "/"> Home </a></p>
+
+</body>
+
+</html>
