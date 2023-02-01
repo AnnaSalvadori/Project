@@ -1,0 +1,72 @@
+
+  .left {
+	background-color: black;
+	width: 65%;
+	height: 90%;
+	left: 0;
+	top: 0;
+	position: absolute;
+  }
+
+  .right {
+	background-color: rgb(170, 165, 165);
+	width: 35%;
+	height: 90%;
+	right: 0;
+	top: 0;
+	position: absolute;
+  }
+
+  .rightText {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	text-align: center;
+	color: black;
+  }
+
+  .leftText {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	text-align: center;
+	color: #e5e4e2;
+  }
+
+  .footer {
+	height: 10%;
+	width: 100%;
+	position: absolute;
+	bottom: 0;
+	background-color: #d21313;
+	right: 0;
+  }
+
+
+  .bottomText {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	text-align: center;
+	color: rgb(255, 255, 255);
+  }
+
+  .button{
+	background-color: rgb(170, 165, 165);
+	font-size: 12px;
+	display: inline-block;
+	color: white;
+	padding: 8px 18px;
+	text-align: center;
+	border-radius: 6px;
+  }
+  
+  .datasetDoc{
+  	text-align: left;
+  	background-color: #F1EEED;
+  	padding: 4px 18px 4px 18px;
+  	border-radius: 4px;
+  }

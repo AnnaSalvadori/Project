@@ -1,0 +1,49 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta charset='UTF-8'> 
+
+		<header>
+			<!-- LATO SINISTRO -->
+		<div class = "left">
+			<div class="leftText">
+		<title> Homepage </title>
+		<link rel="stylesheet" type="text/css" href= "{{url_for('static', filename = 'style.css')}}" />
+	</head>
+	<body>
+		<h1> Homepage </h1>
+		<p> overview over the application </p>
+		<p> here list, link, and describe the other available views effectively. <br>
+			</p>
+			<ul>
+				<li> <a href = "html_activeoperations.html"> Active operations </a>: list of selectable active operations </li>
+				<li> Operation </a>: view of the executed operation </li> <!--ELIMINARE?-->
+				<li> <a href = "html_projectdocumentation.html">Project documentation </a>: software analysis, design and implementation </li>
+			</ul></p>
+			</div>
+		</div>
+
+		<!--- LATO DESTRO -->
+		<div class="right">
+			<div class="rightText">
+				<div class="datasetDoc">
+					<h1> GFF3 Dataset </h1>
+					<p> General information about the dataset (GFF3 come è fatto) </p>
+					<form action = "html_database.html" target = "_blank">
+						<button class = 'button' type = 'submit' value = "database"><b> Learn more </b></button>
+					</form>
+				<div>
+			</div>
+		</div>
+	</header>
+
+	<!-- FOOTER -->
+	<div class="footer"> 
+		<div class="bottomText">
+		<p> aiuto </p>
+	</div>
+	</div>
+
+
+	</body>
+</html>

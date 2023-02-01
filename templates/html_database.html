@@ -1,0 +1,46 @@
+<!DOCTYPE HTML>
+<html>
+
+<head> DATABASE </head>
+<body>
+<!-- TABLE -->
+<div >
+<p> The dataframe is <br> <!-- {{dataframe}} -->
+
+    <table border="1">
+            <tr> 
+            {% for i in dataframe %} <!-- i saranno solo gli index (solo la prima riga) -->
+                <th> {{i}} </th>
+            {% endfor %}
+            </tr>
+        <br>
+        {% for j in range(6) %} <!-- print the first 5 lines  -->
+        <tr>
+            {% for i in dataframe %} 
+                <td> {{dataframe[i][j]}} &nbsp &nbsp &nbsp </td>
+            {% endfor %}
+        </tr>
+        {% endfor %}
+
+        <tr> 
+            {% for i in dataframe %} <!-- prints the dots -->
+                <td> ... </td>
+            {% endfor %}
+        </tr>
+
+            {% for j in range(-5, 0) %} <!-- prints the last 5 lines  -->
+                <tr>
+                {% for i in dataframe %} 
+                    <td> {{dataframe[i].iloc[j]}} &nbsp &nbsp &nbsp </td>
+                {% endfor %}
+                </tr>
+            {% endfor %}
+        </table>
+    </p>
+    </div>
+
+    <p><a href = "/"> Home </a></p>
+
+</body>
+
+</html>

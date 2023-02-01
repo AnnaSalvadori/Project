@@ -1,0 +1,20 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title> Active Operations </title>
+	</head>
+	<body>
+		<h1> Active operations </h1>
+		<p>
+			<form action = "html_operation.html" target = "_blank" method = "get">
+				{% for op, act in dic.items() %}
+					{% if act==True %}
+						<input type="radio" name="select_operation" value="{{op}}"> {{op}} <br>
+					{% endif %}
+				{% endfor %}
+				<input type=submit value="Submit">
+			</form>
+		</p>
+		<p><a href = "/"> Home </a></p>
+	</body>
+</html>
