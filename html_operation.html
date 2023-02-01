@@ -1,0 +1,78 @@
+
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title> Operation </title>
+	</head>
+	<body>
+		<h1> View of the executed operation: {{selection}} </h1>
+		<p> view of the executed operation <br>
+		
+		
+		 <!-- dataframe -->
+			<p> The new dataframe is <br> 
+				{% if out.shape[0] < 20 %}
+				<table border="1">
+					<tr>
+						<th>Index</th> 
+						{% for i in out %} <!-- table heading -->
+							<th> {{i}} </th>
+						{% endfor %}
+					</tr>
+
+					{% for j in range(out.shape[0]) %} <!-- prints all lines -->
+						<tr>
+							<td>{{j}}</td>
+							{% for i in out %} 
+								<td> {{out[i][j]}}</td>
+							{% endfor %}
+						</tr>
+					{% endfor %}
+					
+				</table> <!-- end dataframe print -->
+
+
+
+				{% else %}
+				<table border="1">
+					<tr>
+						<th>Index</th> 
+						{% for i in out %} <!-- table heading -->
+							<th> {{i}} </th>
+						{% endfor %}
+					</tr>
+
+					{% set indexes = out.index %}
+
+					{% for j in range(6) %} <!-- prints the first 5 lines -->
+						<tr>
+							<td>{{indexes[j]}}</td>
+							{% for i in out %} 
+								<td> {{out[i][indexes[j]]}} </td>
+							{% endfor %}
+						</tr>
+					{% endfor %}
+					<tr> 
+						<td> ... </td>
+						{% for i in out %} <!-- prints the dots -->
+							<td> ... </td>
+						{% endfor %}
+					</tr>
+
+						{% for j in range(-5, 0) %} <!-- prints the last 5 lines  -->
+					<tr>
+							<td>{{indexes[j]}}</td>
+							{% for i in out %} 
+								<td> {{out[i][indexes[j]]}} </td>
+							{% endfor %}
+					</tr>
+						{% endfor %}
+				</table> <!-- end dataframe print -->
+			{% endif %}
+			</p> 
+
+		</p>
+		<p><a href = "/"> Home </a></p>
+		<p><a href = "/html_activeoperations.html"> Back to active operations </a></p>
+	</body>
+</html>
