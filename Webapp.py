@@ -40,6 +40,10 @@ def project_documentation():
 def database():
 	df = get_df()
 	return render_template('html_database.html', dataframe = df)
+	
+@webapp.route('/html_alloperations.html')
+def alloperations():
+	return render_template('/html_alloperations.html')
 
 if __name__ == '__main__':
 	webapp.run(debug=True)
