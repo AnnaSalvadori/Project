@@ -16,14 +16,15 @@ class DatasetGFF3(Dataset):
     def __init__(self, filename):
         self.__df = DatasetReaderGFF3.ReadDataset (self, filename)
     
-    # getter ?
-    def getDataframe(self): 
+    @property
+    def dataframe(self): 
         return self.__df
 
 '''eliminare?'''
-class DatasetPandas (Dataset):
+'''class DatasetPandas (Dataset):
     def __init__(self, df = None):
         self.__df = df
     
     def getDataframe(self):
         return self.__df
+'''
