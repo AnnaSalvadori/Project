@@ -20,13 +20,13 @@ def seqID(df):
     return pd.DataFrame(data = df['seq_id'].unique(), columns=['seqID'])
 
     
-'obtaining the list of unique type of operations available in the dataset'
+'Obtaining the list of unique type of operations available in the dataset'
 @active_decorator
 def type_operation(df):
     return pd.DataFrame(data = df['type'].unique(), columns=['type'])
 
 
-'counting the number of features provided by the same source'
+'Counting the number of features provided by the same source'
 @active_decorator
 def count_features(df): 
     counts = df['source'].value_counts()
@@ -38,7 +38,7 @@ def count_features(df):
     return res
 
 
-'counting the number of entries for each type of operation'
+'Counting the number of entries for each type of operation'
 @active_decorator
 def count_entries(df):
     counts = df['type'].value_counts()
@@ -65,7 +65,7 @@ def count_supercontigs(df):
 
 
 # ? specific_entries
-'obtaining a new dataset containing only entries from source ensembl , havana and ensembl_havana'
+'Obtaining a new dataset containing only entries from source ensembl , havana and ensembl_havana'
 @active_decorator
 def entries_ens_hav_enshav(df): 
     a = [True if i in ['ensembl', 'havana', 'ensembl_havana' ] else False for i in df['source']]
@@ -73,7 +73,7 @@ def entries_ens_hav_enshav(df):
 
 
 # ? count_specific_entries
-'counting the number of entries for each type of operation for the dataset containing containing only entries from source ensembl , havana and ensembl_havana'
+'Counting the number of entries for each type of operation for the dataset containing containing only entries from source ensembl , havana and ensembl_havana'
 @active_decorator
 def count_entries_ens_hav_enshav(df): 
     a = [True if i in ['ensembl', 'havana', 'ensembl_havana' ] else False for i in df['source']]
@@ -87,7 +87,7 @@ def count_entries_ens_hav_enshav(df):
     return res
 
 
-'returning the gene names from the dataset containing containing only entries from source ensembl , havana and ensembl_havana'
+'Returning the gene names from the dataset containing containing only entries from source ensembl , havana and ensembl_havana'
 @active_decorator
 def gene_names(df):
     new_df = df.loc[df['type'] == 'gene']
