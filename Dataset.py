@@ -6,15 +6,22 @@ from DatasetReader import *
 ''' General interface Dataset class'''
 class Dataset(ABC):
 
+    #@abstractclassmethod
+    #def __init__(self):
+    #    pass
+    
     @abstractclassmethod
-    def __init__(self):
+    def dataframe(self): 
         pass
 
 
 '''Specific Dataset class'''
 class DatasetGFF3(Dataset):
+    #def __init__(self, filename):
+    #    self.__df = DatasetReaderGFF3.ReadDataset (self, filename)
+    
     def __init__(self, filename):
-        self.__df = DatasetReaderGFF3.ReadDataset (self, filename)
+        self.__df = DatasetReaderGFF3(filename).ReadDataset()
     
     @property
     def dataframe(self): 
