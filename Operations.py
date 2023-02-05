@@ -6,7 +6,7 @@ from Active_registry import *
 
 'Getting the some basic information about the dataset. The basic information are the name and data type of each column'
 @active_decorator
-def info (df): #check
+def info (df):
     res = pd.DataFrame([], columns=["Name", "Type"])
     for i in df: 
         next = pd.DataFrame([[i, [x for x in df[i].apply(type).unique()]]], columns=["Name", "Type"])
@@ -28,7 +28,7 @@ def type_operation (df):
 
 'counting the number of features provided by the same source'
 @active_decorator
-def count_features(df): # check
+def count_features(df): 
     counts = df['source'].value_counts()
     sources = counts.index.tolist()
     res = pd.DataFrame(data = [], columns=['Source', 'Count'])
@@ -64,16 +64,19 @@ def count_supercontigs(df):
     new_df = df.loc[df['source'] == 'GRCh38']
     return pd.DataFrame(data = [new_df['type'].value_counts(normalize = True).supercontig], columns = ['Fraction'])
 
+
+# ? specific_entries
 'obtaining a new dataset containing only entries from source ensembl , havana and ensembl_havana'
 @active_decorator
-def entries_ens_hav_enshav(df): # ? specific_entries
+def entries_ens_hav_enshav(df): 
     a = [True if i in ['ensembl', 'havana', 'ensembl_havana' ] else False for i in df['source']]
     return df.loc[a]
 
 
+# ? count_specific_entries
 'counting the number of entries for each type of operation for the dataset containing containing only entries from source ensembl , havana and ensembl_havana'
 @active_decorator
-def count_entries_ens_hav_enshav(df): # ? count_specific_entries
+def count_entries_ens_hav_enshav(df): 
     a = [True if i in ['ensembl', 'havana', 'ensembl_havana' ] else False for i in df['source']]
     new_df = df.loc[a]
     
@@ -89,7 +92,7 @@ def count_entries_ens_hav_enshav(df): # ? count_specific_entries
 
 'returning the gene names from the dataset containing containing only entries from source ensembl , havana and ensembl_havana'
 @active_decorator
-def gene_names(df): # check
+def gene_names(df):
     new_df = df.loc[df['type'] == 'gene']
     res = pd.DataFrame(data = [], columns = ['Names'])
 
@@ -102,7 +105,7 @@ def gene_names(df): # check
 
 
 
-# non fa parte delle operazioni del prof 
+# operations() does not belong to the requested operations. do we keep it here anyway?
 def operations():
 	dic = {'info': info,
 		'seqID': seqID,
