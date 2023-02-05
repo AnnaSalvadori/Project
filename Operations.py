@@ -6,7 +6,7 @@ from Active_registry import *
 
 'Getting the some basic information about the dataset. The basic information are the name and data type of each column'
 @active_decorator
-def info (df):
+def info(df):
     res = pd.DataFrame([], columns=["Name", "Type"])
     for i in df: 
         next = pd.DataFrame([[i, [x for x in df[i].apply(type).unique()]]], columns=["Name", "Type"])
@@ -16,13 +16,13 @@ def info (df):
 
 'Obtaining the list of unique sequence IDs available in the dataset'
 @active_decorator
-def seqID (df):
+def seqID(df):
     return pd.DataFrame(data = df['seq_id'].unique(), columns=['seqID'])
 
     
 'obtaining the list of unique type of operations available in the dataset'
 @active_decorator
-def type_operation (df):
+def type_operation(df):
     return pd.DataFrame(data = df['type'].unique(), columns=['type'])
 
 
@@ -43,7 +43,6 @@ def count_features(df):
 def count_entries(df):
     counts = df['type'].value_counts()
     types = counts.index.tolist()
-
     res = pd.DataFrame(data = [], columns=['Type', 'Count'])
     for i in range(counts.size):
         next = pd.DataFrame(data = [[types[i], counts[i]]], columns=['Type', 'Count'])
@@ -79,10 +78,8 @@ def entries_ens_hav_enshav(df):
 def count_entries_ens_hav_enshav(df): 
     a = [True if i in ['ensembl', 'havana', 'ensembl_havana' ] else False for i in df['source']]
     new_df = df.loc[a]
-    
     counts = new_df['type'].value_counts()
     sources = counts.index.tolist()
-
     res = pd.DataFrame(data = [], columns=['Operation', 'Count'])
     for i in range(counts.size):
         next = pd.DataFrame(data = [[sources[i], counts[i]]], columns=['Operation', 'Count'])
@@ -95,7 +92,6 @@ def count_entries_ens_hav_enshav(df):
 def gene_names(df):
     new_df = df.loc[df['type'] == 'gene']
     res = pd.DataFrame(data = [], columns = ['Names'])
-
     for i in new_df['attributes']:
         name = i[i.index('Name=')+ 5:]
         name =  pd.DataFrame(data = [name[:name.index(';')]], columns = ['Names'])
