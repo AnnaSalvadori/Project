@@ -1,0 +1,20 @@
+table.dataframe {
+	table-layout: auto;
+  }
+  
+table, td, th{
+	padding: 3px 10px;
+	border: 1px solid black;
+	border-collapse: collapse;
+
+}
+
+td:nth-child(10){
+	column-width: 500px;
+	word-wrap: break-word;
+	word-break: keep-all;
+}
+  
+tr:nth-child(odd) {
+	background-color: #daf2d5;
+	}

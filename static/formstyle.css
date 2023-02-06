@@ -1,0 +1,31 @@
+body{
+    padding: 0px;
+    background-color: rgb(111, 151, 111);
+}
+
+.list {
+    background-color: white;
+    width: 35%;
+    padding: 50px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    border: 2px solid black;
+	border-radius: 6px;
+  }
+
+  .options {
+    text-align: left;
+    padding: 0% 8%;
+    color: black;
+  }
+
+  .button{
+	background-color: white;
+	font-size: 12px;
+	display: inline-block;
+	color: rgb(0, 0, 0);
+	padding: 8px 18px;
+	text-align: center;
+	border-radius: 6px;
+  }
