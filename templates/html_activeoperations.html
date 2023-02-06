@@ -2,20 +2,51 @@
 <html>
 	<head>
 		<title> Active Operations </title>
+		<link rel="stylesheet" type="text/css" href= "{{url_for('static', filename = 'formstyle.css')}}" />
 	</head>
 	<body>
+		<div class="list">
 		<h1> Active operations </h1>
 		<p>
 			<form action = "html_operation.html" target = "_blank" method = "get">
+				<div class="options">
 				{% for op, act in dic.items() %}
 					{% if act==True %}
-						<input type="radio" name="select_operation" value="{{op}}"> {{op}} <br>
+						{% if op == 'info' %}
+							<input type="radio" name="select_operation" value="{{op}}"> Info: <br> returns the name and the type of each column of the dataset <br> <br>
+						{% elif op == 'seqID' %}
+							<input type="radio" name="select_operation" value="{{op}}"> Sequence ID: <br> returns the list of unique sequence IDs available in the dataset <br> <br>
+						{% elif op == 'type_operation' %}
+							<input type="radio" name="select_operation" value="{{op}}"> Type Operation: <br> returns the unique types of operations available in the dataset <br> <br>
+							{% elif op == 'count_features' %}
+							<input type="radio" name="select_operation" value="{{op}}"> Count Features: <br> returns the number of features provided by the same source <br> <br>
+						{% elif op == 'count_entries' %}
+							<input type="radio" name="select_operation" value="{{op}}"> Count entries: <br> returns the number of entries for each type of operation <br> <br>
+							{% elif op == 'entire_chromosome' %}
+							<input type="radio" name="select_operation" value="{{op}}"> Get Entire Chromosomes: <br> returns a new dataset contains only the information about entire chromosomes (source: GRCh38) <br> <br>
+						{% elif op == 'count_supercontigs' %}
+							<input type="radio" name="select_operation" value="{{op}}"> Count Supercontigs: <br> calculates the fraction of unassembled sequences (supercontigs) over entire chromosomes <br> <br>
+							{% elif op == 'entries_ens_hav_enshav' %}
+							<input type="radio" name="select_operation" value="{{op}}"> Entries from sources ensembl, havana, and ensembl_havana: <br> returns a new dataset containing entries from the sources ensembl, havana, and ensembl_havana <br> <br>
+						{% elif op == 'count_entries_ens_hav_enshav' %}
+							<input type="radio" name="select_operation" value="{{op}}"> Count Entries from ensembl, havana, and ensembl_havana: <br> returns the number of entries for each type of operation in the dataset containing only entries from the sources ensembl, havana, ensembl_havana <br> <br>
+						{% elif op == 'gene_names' %}
+							<input type="radio" name="select_operation" value="{{op}}"> Gene Names: <br> returns the names of genes in the dataset containing only entries from the sources ensembl, havana, ensembl_havana  <br> <br>
+						{% endif %}
 					{% endif %}
 				{% endfor %}
+				</div> <br>
 				<input type=submit value="Submit">
 			</form>
 		</p>
-		<p><a href = "html_alloperations.html"> List of all operations</a></p>
-		<p><a href = "/"> Home </a></p>
+	</div>
+
+		<p><form action = "html_alloperations.html" target = "_self">
+			<button class = "button" type = "submit" value = "alloperations" style="margin-left: 45%; margin-right: 45%;"> View all operations </button>
+		</form></p>
+		<p><form action = "html_homepage.html" target = "_self">
+			<button class = "button" type = "submit" value = "home" style="margin-left: 47.5%; margin-right: 45%;"> Home </button>
+		</form></p>
+
 	</body>
 </html>

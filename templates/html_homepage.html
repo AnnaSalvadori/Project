@@ -1,49 +1,91 @@
 <!DOCTYPE HTML>
 <html>
-	<head>
-		<meta charset='UTF-8'> 
+    <head>
+        <title> Homepage </title>
+        <meta charset="utf-8">
+        <link rel="stylesheet" type="text/css" href="{{url_for('static', filename = 'style.css')}}">
+    </head>
 
-		<header>
-			<!-- LATO SINISTRO -->
-		<div class = "left">
-			<div class="leftText">
-		<title> Homepage </title>
-		<link rel="stylesheet" type="text/css" href= "{{url_for('static', filename = 'style.css')}}" />
-	</head>
-	<body>
-		<h1> Homepage </h1>
-		<p> overview over the application </p>
-		<p> here list, link, and describe the other available views effectively. <br>
-			</p>
-			<ul>
-				<li> <a href = "html_activeoperations.html"> Active operations </a>: list of selectable active operations </li>
-				<li> Operation </a>: view of the executed operation </li> <!--ELIMINARE?-->
-				<li> <a href = "html_projectdocumentation.html">Project documentation </a>: software analysis, design and implementation </li>
-			</ul></p>
+    <body>
+        <div class="container">
+
+            <div class = "left lefttext"> <!-- left -->
+				<h1 style="color: rgb(111, 151, 111)" > Homepage </h1>
+				<p> The application developed is capable of reading a dataset containing information about the genome. The data taken
+				<br> as input is represented in a particular file format named .GFF3. The information read by the software can be processed 
+				<br> in different operations that aim to analyze the data and to access it for specific purposes.
+				<br> <br> The final appearance of the software, from a user’s point of view, is a web-based interface. The right panel 
+				<br> contains references to the other available views, that can be accessed by clicking on the interactive buttons. 
+				</p>
+				<br>
+					<h3 style="color: rgb(111, 151, 111)"> Active operations </h3>
+				<p>
+					All the active operations are listed and can be selected from the form to process the dataset. After submission, the page 
+					<br> visualizing the executed operation is opened. Some operations might be inactive; therefore, by clicking on 
+					<br> “View all operations” in the “Active operations” page, the user will be directed to a page that lists all the operations existent. 
+				</p>
+					<br>
+					<h3 style="color: rgb(111, 151, 111)"> GFF3 dataset </h3>
+				<p>
+					The visualized table presents the 9 columns characteristic of the GFF3 format, in addition to an initial column for the indexes. 
+					<br> Considering the size of the data, only the first ten and the last ten entries are reproduced for better visualization. 
+				</p>
+					<br>
+					<h3 style="color: rgb(111, 151, 111)"> Project documentation </h3>
+				<p>
+					The page contains a more in depth description of the software and the algorithms implemented in it. 
+					<br> The CRC cards and the UML class diagram are provided for a more efficient explanation.
+				</p>
+
+				<p>
+					<br> <br> At the end of each page is present a clickable "Home" button, that takes the user to the homepage.
+				</p>
+				
+				
+				
+
+
+
+
+				
 			</div>
-		</div>
 
-		<!--- LATO DESTRO -->
-		<div class="right">
-			<div class="rightText">
+            <div class = "right rightText"> <!--right-->
+				<div class="datasetDoc">
+					<h1> Active operations </h1>
+					<p> View and execute the available operations. </p>
+					<form action = "html_activeoperations.html" target = "_blank">
+						<button class = 'button' type = 'submit' value = "activeoperations"><b> Learn more </b></button>
+					</form>
+				</div> <!--doc-->
+
 				<div class="datasetDoc">
 					<h1> GFF3 Dataset </h1>
-					<p> General information about the dataset (GFF3 come è fatto) </p>
+					<p> General information about the dataset. </p>
 					<form action = "html_database.html" target = "_blank">
 						<button class = 'button' type = 'submit' value = "database"><b> Learn more </b></button>
 					</form>
-				<div>
-			</div>
-		</div>
-	</header>
+				</div> <!--doc-->
 
-	<!-- FOOTER -->
-	<div class="footer"> 
-		<div class="bottomText">
-		<p> aiuto </p>
-	</div>
-	</div>
+				<div class="datasetDoc">
+					<h1> Project documentation </h1>
+					<p> More in depth description. </p>
+					<form action = "html_projectdocumentation.html" target = "_blank">
+						<button class = 'button' type = 'submit' value = "projectdocumentation"><b> Learn more </b></button>
+					</form>
+				</div> <!--doc-->
 
+				<div class="datasetDoc">
+					<h1> Credits </h1>
+					<p> 
+						Group project done by: Gordin Marianna, Salvadori Anna, Petrini Sara, Zhou Aurora.
+						<br> Advanced programming 2022/2023
+					</p>
+				</div> <!--doc-->
 
+			</div> <!--right-->
+        </div>
+		
 	</body>
+
 </html>

@@ -3,8 +3,11 @@
 <html>
 	<head>
 		<title> Operation </title>
+		<link rel="stylesheet" type="text/css" href= "{{url_for('static', filename = 'tablestyle.css')}}" />
 	</head>
+
 	<body>
+		
 		<h1> Executed operation: {{selection}} </h1>
 		<p> The selected operation has been executed; below you can see its output. <br>
 		
@@ -12,11 +15,11 @@
 		 <!-- dataframe -->
 			<p> The new dataframe is <br> 
 				{% if out.shape[0] < 20 %}
-				<table border="1">
+				<table class="dataframe">
 					<tr>
-						<th>Index</th> 
+						<th style="background-color: darkseagreen;">Index</th> 
 						{% for i in out %} <!-- table heading -->
-							<th> {{i}} </th>
+							<th style="background-color: darkseagreen;"> {{i}} </th>
 						{% endfor %}
 					</tr>
 
@@ -34,17 +37,17 @@
 
 
 				{% else %}
-				<table border="1">
+				<table class="dataframe">
 					<tr>
-						<th>Index</th> 
+						<th style="background-color: darkseagreen;">Index</th> 
 						{% for i in out %} <!-- table heading -->
-							<th> {{i}} </th>
+							<th style="background-color: darkseagreen;"> {{i}} </th>
 						{% endfor %}
 					</tr>
 
 					{% set indexes = out.index %}
 
-					{% for j in range(6) %} <!-- prints the first 5 lines -->
+					{% for j in range(11) %} <!-- prints the first 5 lines -->
 						<tr>
 							<td>{{indexes[j]}}</td>
 							{% for i in out %} 
@@ -59,7 +62,7 @@
 						{% endfor %}
 					</tr>
 
-						{% for j in range(-5, 0) %} <!-- prints the last 5 lines  -->
+						{% for j in range(-10, 0) %} <!-- prints the last 5 lines  -->
 					<tr>
 							<td>{{indexes[j]}}</td>
 							{% for i in out %} 

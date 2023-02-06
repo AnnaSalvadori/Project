@@ -1,23 +1,26 @@
 <!DOCTYPE HTML>
 <html>
 
-<head> DATABASE </head>
+<head> 
+    <title> DATABASE </title>
+    <link rel="stylesheet" type="text/css" href= "{{url_for('static', filename = 'tablestyle.css')}}" />
+</head>
 <body>
 <!-- TABLE -->
-<div >
+
 <p> The dataframe is <br> 
 
-    <table border="1">
+    <table class="dataframe">
             <tr> 
-            <th>Index</th> 
-            {% for i in dataframe %} <!-- teable heading -->
-                <th> {{i}} </th>
+            <th style="background-color: darkseagreen;">Index</th> 
+            {% for i in dataframe %} <!-- table heading -->
+                <th style = "background-color:darkseagreen"> {{i}} </th>
             {% endfor %}
             </tr>
         
         {% set indexes = dataframe.index %}
 
-            {% for j in range(6) %} <!-- print the first 5 lines  -->
+            {% for j in range(11) %} <!-- print the first 5 lines  -->
         <tr>
             <td>{{indexes[j]}}</td>
             {% for i in dataframe %} 
@@ -33,17 +36,17 @@
             {% endfor %}
         </tr>
 
-            {% for j in range(-5, 0) %} <!-- prints the last 5 lines  -->
+            {% for j in range(-10, 0) %} <!-- prints the last 5 lines  -->
                 <tr>
                 <td>{{indexes[j]}}</td>
                 {% for i in dataframe %} 
-                    <td> {{dataframe[i][indexes[j]]}} &nbsp &nbsp &nbsp </td>
+                    <td> {{dataframe[i][indexes[j]]}} </td>
                 {% endfor %}
                 </tr>
             {% endfor %}
         </table> <!-- end dataframe print -->
     </p>
-    </div>
+
 
     <p><a href = "/"> Home </a></p>
 
