@@ -2,10 +2,210 @@
 <html>
 	<head>
 		<title> Project Documentation </title>
+		<style>
+			.font {font-family: "courier new";}
+			h1, h2, h3, h4, p, li{font-family: "charter"}
+		</style>
 	</head>
 	<body>
 		<h1> Project Documentation </h1>
-		<p> words words words </p>
-		<p><a href = "/"> Home </a></p>
+		<p> The final appearance of the software, from a user’s point of view, is a web page. To open the web page, one needs to run the Python file code <span class = font> Webapp.py</span>. In the terminal, a reference will be generated which will link to the web page. </p> 
+		<p> Riformulare cose </p>
+		<br>
+		
+		<h2> Input & Output </h2>
+		<p> The input for the software is a GFF3 file. Since it only contains annotations of the sequences, and not the actual sequences, its size is only about 37 MB. The data is represented in a simple text format organized in nine columns, which are tab delimited. The different columns represent: </p>
+		<ul>
+			<li><b>'seqid'</b>: the unique ID of the current feature</li>
+			<li><b>'source'</b>: the software or database name where the feature is derived from (eg. “Genescan”, “Genbank”)</li>
+			<li><b>'type'</b>: the type of the feature</li>
+			<li><b>'start'</b>: the start coordinate of the feature</li>
+			<li><b>'end'</b>: the end coordinate of the feature</li>
+			<li><b>'score'</b>: the score of the feature </li>
+			<li><b>'strand'</b>: the strand of the feature (+, -, ., ?) </li>
+			<li><b>'phase'</b>: the start of the next codon relative to the 5’ end of the current CDS feature (required for all CDS features)</li>
+			<li><b>'attributes'</b>: a list of feature attributes in the format tag=value separated by “;”</li>
+		</ul>
+		<p> “.” indicates that the field is undefined. <br>
+			For the operations to manage the data, this last one must be read by a dataset reader which is dependent on Pandas library(more explanation will be followed).
+			The output of the operations are dataset objects which are instances of the class Pandas DataFrame
+		</p>
+		
+		<h2> Program Structure </h2>
+		<p> The program is divided in modules - <span class = font>DatasetReader, Dataset, Operations, Active_registry</span> and <span class = font>Webapp</span> - and includes also two folders - templates, containing the html files for the webpages and static, containing the files defining the style of the webpages. </p>
+		<p><i> Libraries used: </i>
+		<ul>
+			<li><span class = font>pandas</span></li>
+			<li><span class = font>abc</span></li>
+			<li><span class = font>flask</span></li>
+		</ul></p>
+		
+		<h3> DatasetReader </h3>
+		<p>
+			The <span class = font>DatasetReader</span> module contains two classes: <span class = font>DatasetReader</span> and <span class = font>DatasetReaderGFF</span>.
+			<ul>
+				<li> <span class = font>DatasetReader</span>: a general interface for reading datasets </li>
+				<li> <span class = font>DatasetReaderGFF3</span>: a specific class for reading GFF3 datasets </li>
+			</ul>
+		</p>
+		
+		<h4> DatasetReader </h4>
+		<p> The class <span class = font>DatasetReader</span> is a general interface; it is an abstract class that inherits from <span class = font>ABC</span>. Abstract classes are derived classes of the <span class = font>ABC</span> class, so they must be declared as subclasses of <span class = font>ABC</span>. The <span class = font>ABC</span> module provides the infrastructure for defining Abstract Base Classes (<span class = font>ABC</span>s) in Python. This module provides the metaclass <span class = font>ABCMeta</span> for defining <span class = font>ABC</span>s and a helper class <span class = font>ABC</span> to alternatively define <span class = font>ABC</span>s through inheritance. </p>
+		<p> <span class = font>ReadDataset</span> is a method that reads the dataset; in the case of the <span class = font>DatasetReader</span> class, the method is not implemented. This means that it is abstract and marked explicitly with a decorator called abstractmethod, which is a decorator indicating abstract methods. </p>
+		
+		<h4> DatasetReaderGFF3 </h4>
+		<p>  The class <span class = font>DatasetReaderGFF3</span> is a specific reader for GFF3 datasets and inherits from the general interface <span class = font>DatasetReader</span>.
+			In the constructor, the first argument is self (refers to the object currently being created) and the second argument is filename. dataframe is a public attribute containing the filename taken as argument.
+			<span class = font>ReadDataset</span> is a method that allows to read the dataset contained in the file. It takes only self as an argument and returns a pandas DataFrame containing the data that are present in the file. 
+			This method uses the <span class = font>pd.read_csv</span> function that reads a comma-separated values (csv) file into <span class = font>DataFrame</span> and returns a <span class = font>pandas DataFrame</span>. The <span class = font>read_csv</span> function has the following parameters:
+			<ul>
+				<li><span class = font>self.dataframe</span>: the filepath in string format; </li>
+				<li><span class = font>sep=”\t”</span>: the delimiter to be used; </li>
+				<li><span class = font>comment=”#”</span>: indicates remainder of line should not be parsed. If found at the beginning of a line, the line will be ignored altogether; </li>
+				<li><span class = font>names=["seq_id","source","type","start","end","score","strand",”phase","attributes"]</span>: a list of column names to use; </li> 
+			</ul>
+			
+		<h3> Dataset </h3>
+		<p>The <span class = font>Dataset</span> module contains two classes to manage the dataset:
+			<ul>
+				<li><span class = font>Dataset</span>: a general interface for all datasets</li>
+				<li><span class = font>DatasetGFF3</span>: a specific class for GFF3 datasets</li>
+			</ul>
+		</p>
+		
+		<h4>Dataset</h4>
+		<p>The class Dataset is a general interface that inherits from ABC. The <span class = font>dataframe</span> method contains only <span class = font>pass</span> and is decorated with the <span class = font>abstractclassmethod</span> decorator. This makes the class an interface. 
+			<span class = font>dataframe</span> is an abstract getter method, marked with the <span class = font>abstractmethod</span> decorator. 
+		</p>
+		
+		<h4>DatasetGFF3</h4>
+		<p>The class <span class = font>DatasetGFF3</span> is a specific class for GFF3 datasets and inherits from the general interface <span class = font>Dataset</span>.
+			In the constructor, the first argument is <span class = font>self</span> and the second argument is <span class = font>filename</span>. <span class = font>df</span> is a private object attribute that results from applying the <span class = font>ReadDataset</span> method of the 
+			<span class = font>DatasetReaderGFF3</span> class using the filename given as a parameter. <span class = font>df</span> type is pandas DataFrame, that is the type returned by the <span class = font>ReadDataset</span> method.
+			<span class = font>dataframe</span> is a getter method defined inside the <span class = font>DatasetGFF3</span> class. It returns the private attribute <span class = font>df</span>, so the returned value is of type pandas DataFrame. It is decorated with the property <span class = font>decorator</span> in order to make it accessible as an attribute, and not as a method.
+			
+		<h3>Operations</h3>	
+		<p>The <span class = font>Operations</span> module contains all the operations that can be done on the GFF3 dataset. Each function is decorated by the <span class = font>active_decorator</span> decorator. Whenever the decorator is activated, it takes the function as a parameter. </p>
+		
+		<h4>info</h4>
+		<p> Takes the dataframe as parameter and returns a pandas DataFrame containing basic informations about the dataset: the name and the type of each column.
+			<br> First of all, we created an empty pandas DataFrame called <span class = font>res</span>, with two columns whose names are set to “Name” and “Type”. Then we iterate on the first line of the dataframe, that contains the name of the columns of the GFF3 dataset. A new pandas DataFrame called <span class = font>next</span> is created: it contains the name of the column of the dataset in the “Name” column and the unique types of the elements of that column of the dataset in the “Type” column; the unique types are retrieved using the function <span class = font> .apply(type).unique()</span>.
+			During the iteration, the two DataFrames, <span class = font>res</span> and <span class = font>next</span>, are concatenated in order to create eventually a DataFrame containing the names of the columns of the GFF3 dataset in the “Name” column and the unique types of the elements of the columns of the GFF3 dataset in the “Type” column.
+		</p>
+		
+		<h4>seqID</h4>
+		<p> Takes the dataframe as parameter and returns a pandas DataFrame containing the unique sequence IDs available in the dataset. 
+			<br> It returns a DataFrame that is created inserting the unique values found in the column “seq_id” of the dataset, in a column called “seqID”. The unique values are retrieved using the function <span class="font">.unique()</span>.
+		</p>
+		
+		<h4>type_operation</h4>
+		<p> Takes the dataframe as parameter and returns a pandas DataFrame containing the unique type of operations available in the dataset.
+			<br> It returns a DataFrame that is created inserting the unique values found in the column “type” of the dataset, in a column called “type”. The unique values are retrieved using the function <span class="font">.unique()</span>.
+		</p>
+		
+		<h4>count_features</h4>
+		<p> Takes the dataframe as parameter and returns a pandas DataFrame containing the number of features provided by the same source.
+			<br>Firstly, the features are counted through the function <span class="font">.value_counts()</span>, whose output is assigned to the variable “counts”. To obtain a list of all the indexes we applied to “counts” the functions <span class="font">.index.tolist()</span> which output is assigned to the variable “sources”. 
+			<br>Following that, we created an empty dataframe with two columns named “Source” and “Count”. With the use of an iterator, to the initially empty dataframe we concatenated a new dataframe that takes the values from “sources” and “counts” in the proper order.
+		</p>
+		
+		<h4>count_entries</h4>
+		<p> Takes the dataframe as parameter and returns a pandas DataFrame containing the number of features provided by the same type.
+			<br> The code is identical to that for <span class="font">count_features</span> except for the fact that type is considered instead of source.
+		</p>
+		
+		<h4>entire_chromosome</h4>
+		<p> Takes the dataframe as parameter and returns a pandas DataFrame only containing entries with source “GRCh38” and type “chromosome”.
+			<br> Through the label based slicer <span class="font">.loc[]""</span>, we created a new dataframe that only has “GRCh38” as source and we assigned it to the variable <span class="font">new_df</span>. <span class="font">new_df</span> is sliced again by only taking the entries with type “chromosome”.
+		</p>
+		
+		<h4>count_supercontigs</h4>
+		<p>Takes the dataframe as parameter and returns a pandas DataFrame containing the calculated fraction of unassembled sequences (supercontigs) over entire chromosomes. 
+			<br>Firstly, the dataframe is sliced only considering entries with source “GRCh38”. Then, the entries with type “supercontig” are counted through the function <span class="font">.value_counts()</span> which automatically returns the fraction of supercontigs over all the entries with source “GRCh38”. This number is shown in the only column of the dataframe named “Fraction”.
+		</p>
+		
+		<h4>entries_ens_hav_enshav</h4>
+		<p> Takes the dataframe as parameter and returns a pandas DataFrame containing only entries from source <span class="font">ensembl</span>, <span class="font">havana</span> and <span class="font">ensembl_havana</span>.
+			<br> In a variable we stored a list comprehension that considers the sources <span class="font">ensembl</span>, <span class="font">havana</span> and <span class="font">ensembl_havana</span> as <span class="font">True</span> and the remaining sources as <span class="font">False</span>. After that, the dataframe is sliced with the <span class="font">loc</span> function that considers the three sources simultaneously.
+		</p>
+		
+		<h4>count_entries_ens_hav_enshav</h4>
+		<p>Takes the dataframe as parameter and returns a pandas DataFrame containing the number of features provided by the same type, while only taking in consideration entries from source <span class="font">ensembl</span>, <span class="font">havana</span> and <span class="font">ensembl_havana</span>.
+			<br> Firstly, we created a dataframe with only entries from source <span class="font">ensembl</span>, <span class="font">havana</span> and <span class="font">ensembl_havana</span> as in the function <span class="font">entries_ens_hav_enshav</span>. Then, to the new dataframe we applied the code for the function <span class="font">count_entries</span>.
+		</p>
+		
+		<h4>gene_names</h4>
+		<p>Takes the dataframe as parameter and returns a pandas DataFrame containing all the names of the genes. 
+			<br>First of all, we created a new dataframe containing only entries with type “gene”. Then we created an empty dataframe with one only column named “Names”. Through a for loop, we concatenated dataframes containing the name of the gene derived from different slicing operations.
+		</p>
+		
+		<h3> Active_registry </h3>
+		<p> The <span class="font">Active_registry</span> module is used to manage the state of the operations, that can be active or inactive. It contains the class <span class="font">Active</span> and the decorator <span class="font">active_decorator</span>.</p>
+		
+		<h4>Active</h4>
+		<p>The Active class is used to manage the active/inactive state of the operations.
+			<br>In the constructor, the private attribute <span class="font">d</span> is defined as a dictionary containing the names of the operations as values and <span class="font">True</span> or <span class="font">False</span> as keys. <span class="font">True</span> is used to mark an operation as active, <span class="font">False</span> is used to mark an operation as inactive.
+			<br>The <span class="font">dictionary</span> method takes <span class="font">self</span> as argument and returns the private attribute <span class="font">d</span>, so it is a getter and it is decorated with the property decorator in order to make it accessible as an attribute, and not as a method.
+		</p>
+		
+		<h4>active_decorator</h4>
+		<p> The <span class="font">active_decorator</span> takes a function as parameter, that in our case is one of the operations implemented in the <span class="font">Operations</span> module and returns the nested function, <span class="font">activation(*args)</span>. The decorator instanciates an object of the class <span class="font">Active</span>.
+			<br> Then, the activation function is able to retrieve the name of the function. If the value corresponding to the key “name” in the dictionary of the <span class="font">Active</span> instanciation is <span class="font">True</span> this means that the function is active and so the activation returns the parameter function that takes as argument; if it is <span class="font">False</span>, it returns a sentence warning that the function is not active.
+		</p>
+		
+		<h3>Webapp</h3>
+		<p><span class="font">Webapp</span> is the module that links the webpage with the Python code. It is based on <span class="font">Flask</span>, which is a web application framework that makes the communication between web server and web applications possible, and declares the interconnections among the web applications.
+			<br>First of all, the function <span class="font">get_df</span> creates an instance of the class <span class="font">DatasetGFF3</span> and returns a dataframe of the instance, which will be used as input in the operations.
+			<br>Secondly, through the <span class="font">route</span> decorator we can register a function to a given URL, stated in the parameter of the <span class="font">route</span> decorator. The function returns a given HTML template, which can be automatically found in the templates folder through the function <span class="font">render_template</span>.
+			<br>Lastly, to run the web page we need to instantiate an object of the class <span class="font">Flask</span>, which represents the whole application. Then we apply the function <span class="font">.run()</span> to the object in order to open the web application.
+		</p>
+		
+		<h3>templates</h3>
+		<div style="padding-left:10px">
+			<h4>html_homepage</h4>
+			<p> It is the template for the homepage. Through the <span class="font">< div ></span> tag, the template is divided into different sections that are styled with CSS. 
+				<br> The left panel contains a description of the application and of the available views.
+				<br> The right panel contains clickable bottons that contain references to the other views and redirect, respectively, to <span class="font">html_activeoperations</span>, <span class="font">html_database</span>, and <span class="font">html_projectdocumentation</span>.
+			</p>
+			<h4>html_database</h4>
+			<p>The database template contains the view of the dataset. The dataframe is created through the  <span class="font">< table ></span> tag. 
+				<br> The first iteration creates the header of the columns. <span class="font">i</span> stands for the columns, while <span class="font">j</span> for the rows.
+				<br> The second iteration creates and fills in the first 10 rows (10 is an arbitrary range set by the developers, but any other number can be inserted). The inner loop is written in such a way that the row stays constant and the column varies at every iteration. At the end of each iteration, we pass to the next row and a second round of iteration starts.
+				<br> Following that, we create a row that prints “…” for every column. This serves to separate the first rows from the last ones.
+				<br> At last, we implement an iteration as the second one, in order to reproduce the last 10 rows of the dataset.
+				<br> At the bottom, a reference to the homepage is added.
+			</p>
+			
+			<h4>html_activeoperations</h4>
+			<p>The <span class="font">activeoperations</span> template is constituted by a form for user input that directs the page to <span class="font">html_operation</span> which prints the output of the operation selected.
+				<br>By iterating through a dictionary (written in the file <span class="font">Active.py</span>) only if the corresponding value of the operation is <span class="font">True</span>,  the operation is displayed in the form. Once one active operation is executed, output is shown by directing the page to <span class="font">html_operation</span>.
+			</p>
+			
+			<h4>html_alloperations</h4>
+			<p> The <span class="font">alloperations</span> template contains a bulleted list composed of text only.
+				<br>At the bottom references to the <span class="font">activeoperations</span> template and the <span class="font">homepage</span> template are included.
+			</p>
+			
+			<h4>html_operation</h4>
+			<p>The operation template prints the output of the operation. 
+				<br> First of all we set <span class="font">out</span> as the output of the operations and <span class="font">indexes</span> as the indexes of the whole dataframe.
+				<br> Then, as in the template <span class="font">html_database</span> we fill in the table through different sets of iterations. The values inserted are derived from the dataframe resulting from the output of the operations.
+			</p>
+			
+			<h4>html_projectdocumentation</h4>
+			<p> The project documentation template contains all the text of the current page </p>
+		</div>
+		<h3> static </h3>
+		<div style="padding-left:10px">
+			<h4>style.css</h4>
+			<p>The file contains all the indications for the styles and features of different sections in the <span class="font">html_homepage</span> template.</p>
+		</div>
+	
+	<h2>Conclusion</h2>
+	<p>The development of the project made use of different programming languages, such as Python, HTML and CSS. The project aimed to divide a task into its components, understand the function of each component and the mechanism of their interconnections. The understanding of the abstract function, the Pandas dataframe, Flask, Jinjia2, …, was required and achieved for the correct functioning of the program.
+			
+	<p><form action = "/" target = "_self">
+		<button class = "button" type = "submit" value = "home" style="margin-left: 47.5%; margin-right: 45%;"><b> Home </b></button>
+	</form></p>
 	</body>
 </html>
