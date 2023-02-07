@@ -64,7 +64,6 @@ def count_supercontigs(df):
     return pd.DataFrame(data = [new_df['type'].value_counts(normalize = True).supercontig], columns = ['Fraction'])
 
 
-# ? specific_entries
 'Obtaining a new dataset containing only entries from source ensembl , havana and ensembl_havana'
 @active_decorator
 def entries_ens_hav_enshav(df): 
@@ -72,7 +71,6 @@ def entries_ens_hav_enshav(df):
     return df.loc[a]
 
 
-# ? count_specific_entries
 'Counting the number of entries for each type of operation for the dataset containing containing only entries from source ensembl , havana and ensembl_havana'
 @active_decorator
 def count_entries_ens_hav_enshav(df): 
