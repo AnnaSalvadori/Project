@@ -97,19 +97,3 @@ def gene_names(df):
     return res
 
 
-
-
-# operations() does not belong to the requested operations. do we keep it here anyway?
-def operations():
-	dic = {'info': info,
-		'seqID': seqID,
-		'type_operation':type_operation,
-		'count_features': count_features,
-		'count_entries':count_entries,
-		'entire_chromosome': entire_chromosome,
-		'count_supercontigs': count_supercontigs,
-		'entries_ens_hav_enshav': entries_ens_hav_enshav,
-		'count_entries_ens_hav_enshav':count_entries_ens_hav_enshav,
-		'gene_names': gene_names}  
-	return dic
-
