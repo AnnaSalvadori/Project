@@ -1,5 +1,7 @@
 table.dataframe {
 	table-layout: auto;
+	margin-left: auto;
+	margin-right: auto;
   }
   
 tr, td, th, h1, p, li {
@@ -23,7 +25,7 @@ tr:nth-child(odd) {
 	background-color: #daf2d5;
 	}
 
-  .button{
+.button{
 	background-color: white;
 	font-size: 12px;
 	font-family: "Charter";
@@ -32,5 +34,18 @@ tr:nth-child(odd) {
 	padding: 8px 18px;
 	text-align: center;
 	border-radius: 6px;
+	border: 1px solid black;
 	font-family: "Charter";
-  }
+}
+
+.color {
+	color: rgb(111, 151, 111);
+}
+
+body{
+	text-align: center;
+}
+
+li {
+	text-align: left;
+}
