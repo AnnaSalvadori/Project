@@ -33,6 +33,6 @@ class DatasetReaderGFF3(DatasetReader):
             "attributes",
             ],
         )
-        return pd.DataFrame(df)
+        return df
     
    
