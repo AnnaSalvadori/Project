@@ -16,7 +16,7 @@ class DatasetReaderGFF3(DatasetReader):
         self.dataframe = filename
 
 
-    def ReadDataset(self):
+    def ReadDataset(self) -> pd.core.frame.DataFrame:
         df = pd.read_csv(
         self.dataframe,
         sep="\t",
