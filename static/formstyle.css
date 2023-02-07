@@ -12,6 +12,7 @@ body{
     text-align: center;
     border: 2px solid black;
 	border-radius: 6px;
+	margin-top: 3%;
   }
 
   .options {
@@ -23,9 +24,20 @@ body{
   .button{
 	background-color: white;
 	font-size: 12px;
+	font-family: "Charter";
 	display: inline-block;
 	color: rgb(0, 0, 0);
 	padding: 8px 18px;
 	text-align: center;
 	border-radius: 6px;
+	border-color: black;
   }
+
+h1, p, form, li {
+	font-family: "Charter";
+	}
+	
+li {
+	text-align: left;
+	margin-left: 5%;
+	}

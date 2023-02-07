@@ -2,6 +2,10 @@ table.dataframe {
 	table-layout: auto;
   }
   
+tr, td, th, h1, p, li {
+	font-family: "Charter";
+	}
+  
 table, td, th{
 	padding: 3px 10px;
 	border: 1px solid black;
@@ -18,3 +22,15 @@ td:nth-child(10){
 tr:nth-child(odd) {
 	background-color: #daf2d5;
 	}
+
+  .button{
+	background-color: white;
+	font-size: 12px;
+	font-family: "Charter";
+	display: inline-block;
+	color: rgb(0, 0, 0);
+	padding: 8px 18px;
+	text-align: center;
+	border-radius: 6px;
+	font-family: "Charter";
+  }
