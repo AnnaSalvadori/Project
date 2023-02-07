@@ -9,9 +9,9 @@
 	</head>
 	<body>
 		<h1> Project Documentation </h1>
-		<p> The final appearance of the software, from a user’s point of view, is a web page. To open the web page, one needs to run the Python file code <span class = font> Webapp.py</span>. In the terminal, a reference will be generated which will link to the web page. </p> 
-		<p> Riformulare cose </p>
-		<br>
+		<p> The project’s aim consists in parsing the GFF3 data format. The information derived can then be processed for further genomics analysis through the use of different operations provided by the software. The project can be viewed by the user in the form of a web page. To open the web page, one needs to run the Python file code “Webapp.py”. In the terminal, a reference will be generated which will link to the web page.
+			<br>The following documentation presents the structure and the steps for the development of the programme. </p> 
+		</p>
 		
 		<h2> Input & Output </h2>
 		<p> The input for the software is a GFF3 file. Since it only contains annotations of the sequences, and not the actual sequences, its size is only about 37 MB. The data is represented in a simple text format organized in nine columns, which are tab delimited. The different columns represent: </p>
@@ -158,6 +158,7 @@
 			<br>First of all, the function <span class="font">get_df</span> creates an instance of the class <span class="font">DatasetGFF3</span> and returns a dataframe of the instance, which will be used as input in the operations.
 			<br>Secondly, through the <span class="font">route</span> decorator we can register a function to a given URL, stated in the parameter of the <span class="font">route</span> decorator. The function returns a given HTML template, which can be automatically found in the templates folder through the function <span class="font">render_template</span>.
 			<br>Lastly, to run the web page we need to instantiate an object of the class <span class="font">Flask</span>, which represents the whole application. Then we apply the function <span class="font">.run()</span> to the object in order to open the web application.
+			<br>The module also includes a dictionary containing references of the operations. This allows the programme to associate the string of the selected operation to the corresponding function. 
 		</p>
 		
 		<h3>templates</h3>
@@ -199,6 +200,12 @@
 		<div style="padding-left:10px">
 			<h4>style.css</h4>
 			<p>The file contains all the indications for the styles and features of different sections in the <span class="font">html_homepage</span> template.</p>
+
+			<h4>formstyle.css</h4>
+			<p>The file contains the indications for the style of the pages <span class="font">html_activeoperations</span> and <span class="font">html_alloperations</span>.</p>
+
+			<h4>formstyle.css</h4>
+			<p>The file contains indications for the style of the table in the pages <span class="font">html_database</span> and <span class="font">html_operation</span>.</p>
 		</div>
 	
 	<h2>Conclusion</h2>
