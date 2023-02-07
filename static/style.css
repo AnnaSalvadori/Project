@@ -2,6 +2,10 @@ body {
     margin: 0px;
 }
 
+h1, h2 {
+    color: rgb(111, 151, 111)
+}
+
 .container {
     height: 100%;
     display: grid;
