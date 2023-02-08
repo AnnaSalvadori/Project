@@ -4,7 +4,7 @@
 		<title> Project Documentation </title>
 		<link rel="stylesheet" type="text/css" href= "{{url_for('static', filename = 'formstyle.css')}}" />
 		<style>
-			.font {font-family: "courier new";}
+			.font {font-family: "courier new"; letter-spacing: -1.2px;}
 			h1, h2, h3, h4, p, li{font-family: "charter"}
 		</style>
 	</head>
@@ -58,7 +58,7 @@
 			<li><b>'attributes'</b>: a list of feature attributes in the format tag=value separated by “;”</li>
 		</ul>
 		<p> “.” indicates that the field is undefined. <br>
-			For the operations to manage the data, this last one must be read by a dataset reader which is dependent on Pandas library(more explanation will be followed).
+			For the operations to manage the data, this last one must be read by a dataset reader which is dependent on Pandas library (more explanation will be followed).
 			The output of the operations are dataset objects which are instances of the class <span class = font>Pandas DataFrame</span>
 		</p>
 		<p><i> Libraries used: </i>
@@ -70,7 +70,7 @@
 		
 		<br>
 		<h2> Program Structure </h2>
-		<p> The program is divided in modules - <span class = font>DatasetReader, Dataset, Operations, Active_registry</span> and <span class = font>Webapp</span> - and includes also two folders - templates, containing the html files for the webpages and static, containing the files defining the style of the webpages. </p>
+		<p> The program is divided in modules - <span class = font>DatasetReader, Dataset, Operations, Active_registry</span> and <span class = font>Webapp</span> - and includes also two folders: templates, containing the html files for the webpages, and static, containing the files defining the style of the webpages. </p>
 		
 
 		<figure>
@@ -79,7 +79,7 @@
 		</figure>
 		
 		<p> In the UML class diagram above, it is possible to visualize the classes, the relations between them and their attributes and methods. Four classes are present: <span class = font>Dataset</span>, <span class = font>DatasetGFF3</span>, <span class = font>DatasetReader</span> and <span class = font>DatasetReaderGFF3</span>.
-			<br> <span class = font>Dataset</span> is a general interface with a public method called <span class = font>dataframe()</span>, that is not implemented. <span class = font>DatasetGFF3</span> is a concrete class that inherits from the <span class = font>Dataset</span> class. The relation between <span class = font>Dataset</span> and <span class = font>DatasetGFF3</span> is a realization, which is a relation between an interface (<span class = font>Dataset</span>) and a class (<span class = font>DatasetGFF3</span>) implementing such an interface. <span class = font>Dataset</span> is the provider that exposes an interface, while <span class = font>DatasetGFF3</span> realizes the interface providing an implementation. The <span class = font>DatasetGFF3</span> class has a private attribute, <span class = font>df</span>, of type <span class = font>DataFrame</span>, and a public method, <span class = font>dataframe()</span>, that returns a <span class = font><i>DataFrame</i></span> object. 
+			<br> <span class = font>Dataset</span> is a general interface with a public method called <span class = font>dataframe()</span>, that is not implemented. <span class = font>DatasetGFF3</span> is a concrete class that inherits from the <span class = font>Dataset</span> class. The relation between <span class = font>Dataset</span> and <span class = font>DatasetGFF3</span> is a realization, which is a relation between an interface (<span class = font>Dataset</span>) and a class (<span class = font>DatasetGFF3</span>) implementing such an interface. <span class = font>Dataset</span> is the provider that exposes an interface, while <span class = font>DatasetGFF3</span> realizes the interface providing an implementation. The <span class = font>DatasetGFF3</span> class has a private attribute, <span class = font>df</span>, of type <span class = font><i>DataFrame</i></span>, and a public method, <span class = font>dataframe()</span>, that returns a <span class = font><i>DataFrame</i></span> object. 
 			<br> <span class = font>DatasetReader</span> is a general interface with a public method called  <span class = font>readDataset()</span>, that is not implemented.  <span class = font>DatasetReaderGFF3</span> is a concrete class that inherits from the  <span class = font>DatasetReader</span> class. The relation between  <span class = font>DatasetReader</span> and  <span class = font>DatasetReaderGFF3</span> is a realization. The  <span class = font>DatasetReaderGFF3</span> class has a private attribute,  <span class = font>dataframe</span>, of type  <span class = font><i>str</i></span>, and a public method,  <span class = font>readDataset()</span>, that returns a  <span class = font><i>DataFrame</i></span> object.
 			<br> <span class = font>DatasetGFF3</span> and <span class = font>DatasetReaderGFF3</span> are related through a dependency, which is also called supplier-client relationship; it is a strong relation. <span class = font>DatasetGFF3</span> uses a method of the <span class = font>DatasetReaderGFF3</span> class for its implementation; therefore, modifications of the <span class = font>DatasetReaderGFF3</span> may impact the <span class = font>DatasetGFF3</span> class.
 		</p>
@@ -94,8 +94,8 @@
 		</p>
 		
 		<h4> DatasetReader </h4>
-		<p> The class <span class = font>DatasetReader</span> is a general interface; it is an abstract class that inherits from <span class = font>ABC</span>. Abstract classes are derived classes of the <span class = font>ABC</span> class, so they must be declared as subclasses of <span class = font>ABC</span>. The <span class = font>ABC</span> module provides the infrastructure for defining Abstract Base Classes (<span class = font>ABC</span>s) in Python. This module provides the metaclass <span class = font>ABCMeta</span> for defining <span class = font>ABC</span>s and a helper class <span class = font>ABC</span> to alternatively define <span class = font>ABC</span>s through inheritance. </p>
-		<p> <span class = font>ReadDataset</span> is a method that reads the dataset; in the case of the <span class = font>DatasetReader</span> class, the method is not implemented. This means that it is abstract and marked explicitly with a decorator called abstractmethod, which is a decorator indicating abstract methods. </p>
+		<p> The class <span class = font>DatasetReader</span> is a general interface; it is an abstract class that inherits from <span class = font>ABC</span>. Abstract classes are derived classes of the <span class = font>ABC</span> class, so they must be declared as subclasses of <span class = font>ABC</span>. The <span class = font>ABC</span> module provides the infrastructure for defining Abstract Base Classes (<span class = font>ABC</span>s) in Python.
+		<p> <span class = font>ReadDataset</span> is a method that reads the dataset; in the case of the <span class = font>DatasetReader</span> class, the method is not implemented. This means that it is abstract and marked explicitly with a decorator called <span class="font">abstractmethod</span>, which is a decorator indicating abstract methods. </p>
 		
 		<figure>
 			<img class="imgCRC" src="/static/CRCCard_DatasetReader.png" alt="Class-Responsibility-Collaboration (CRC) card of the class DatasetReader">
@@ -104,8 +104,8 @@
 		
 		<h4> DatasetReaderGFF3 </h4>
 		<p>  The class <span class = font>DatasetReaderGFF3</span> is a specific reader for GFF3 datasets and inherits from the general interface <span class = font>DatasetReader</span>.
-			In the constructor, the first argument is self (refers to the object currently being created) and the second argument is filename. dataframe is a public attribute containing the filename taken as argument.
-			<span class = font>ReadDataset</span> is a method that allows to read the dataset contained in the file. It takes only self as an argument and returns a pandas DataFrame containing the data that are present in the file. 
+			In the constructor, the first argument is <span class="font">self</span> (refers to the object currently being created) and the second argument is <span class="font">filename</span>. <span class="font">dataframe</span> is a public attribute containing the <span class="font">filename</span> taken as argument.
+			<span class = font>ReadDataset</span> is a method that allows to read the dataset contained in the file. It takes only <span class="font">self</span> as an argument and returns a pandas DataFrame containing the data that are present in the file. 
 			This method uses the <span class = font>pd.read_csv</span> function that reads a comma-separated values (csv) file into <span class = font>DataFrame</span> and returns a <span class = font>pandas DataFrame</span>. The <span class = font>read_csv</span> function has the following parameters:
 			<ul>
 				<li><span class = font>self.dataframe</span>: the filepath in string format; </li>
@@ -129,7 +129,7 @@
 		</p>
 		
 		<h4>Dataset</h4>
-		<p>The class Dataset is a general interface that inherits from ABC. The <span class = font>dataframe</span> method contains only <span class = font>pass</span> and is decorated with the <span class = font>abstractclassmethod</span> decorator. This makes the class an interface. 
+		<p>The class <span class="font">Dataset</span> is a general interface that inherits from <span class="font">ABC</span>. The <span class = font>dataframe</span> method contains only <span class = font>pass</span> and is decorated with the <span class = font>abstractclassmethod</span> decorator. This makes the class an interface. 
 			<span class = font>dataframe</span> is an abstract getter method, marked with the <span class = font>abstractmethod</span> decorator. 
 		</p>
 		
@@ -184,12 +184,12 @@
 		
 		<h4>entire_chromosome</h4>
 		<p> Takes the dataframe as parameter and returns a pandas DataFrame only containing entries with source “GRCh38” and type “chromosome”.
-			<br> Through the label based slicer <span class="font">.loc[]</span>, we created a new dataframe that only has “GRCh38” as source and we assigned it to the variable <span class="font">new_df</span>. The dataframe <span class="font">new_df</span> is sliced again by only taking the entries with type “chromosome”.
+			<br> Through the slicer <span class="font">.loc[]</span>, we created a new dataframe that only has “GRCh38” as source and we assigned it to the variable <span class="font">new_df</span>. The dataframe <span class="font">new_df</span> is sliced again by only taking the entries with type “chromosome”.
 		</p>
 		
 		<h4>count_supercontigs</h4>
 		<p>Takes the dataframe as parameter and returns a pandas DataFrame containing the calculated fraction of unassembled sequences (supercontigs) over entire chromosomes. 
-			<br>Firstly, the dataframe is sliced only considering entries with source “GRCh38”. Then, the entries with type “supercontig” are counted through the function <span class="font">.value_counts()</span> which automatically returns the fraction of supercontigs over all the entries with source “GRCh38”. This number is shown in the only column of the dataframe named “Fraction”.
+			<br>Firstly, the dataframe is sliced only considering entries with source “GRCh38”. Then, the entries with type “supercontig” are counted through the function <span class="font">.value_counts()</span>, with parameter <span class="font">normalize = True</span>, which automatically returns the fraction of supercontigs over all the entries with source “GRCh38”. This number is shown in the only column of the dataframe named “Fraction”.
 		</p>
 		
 		<h4>entries_ens_hav_enshav</h4>
@@ -220,15 +220,16 @@
 		<p>The function <span class="font">active</span> is used to manage the active/inactive state of the operations. It creates a dictionary that is assigned to the variable <span class="font">d</span>. The dictionary contains the names of the operations as keys and <span class="font">True</span> or <span class="font">False</span> as values. <span class="font">True</span> is used to mark an operation as active, <span class="font">False</span> is used to mark an operation as inactive. The function <span class="font">active</span> returns the dictionary <span class="font">d</span>.
 		
 		<h4>active_decorator</h4>
-		<p> The <span class="font">active_decorator</span> takes a function as parameter, that in our case is one of the operations implemented in the <span class="font">Operations</span> module and returns the nested function, <span class="font">activation(*args)</span>. First of all, the decorator calls the function <span class="font">active()</span> and assignes it to the variable <span class="font">act</span> (in this way, <span class="font">act</span> is the dictionary). Then, the activation function is able to retrieve the name of the function. If the value corresponding to the key <span class="font">name</span> in the dictionary (<span class="font">act</span>) is <span class="font">True</span>, this means that the function is active and so the activation returns the parameter function that it takes as argument; if it is <span class="font">False</span>, it returns a sentence warning that the function is not active.
+		<p> The <span class="font">active_decorator</span> takes a function as parameter, that in our case is one of the operations implemented in the <span class="font">Operations</span> module and returns the nested function, <span class="font">activation(*args)</span>. First of all, the decorator calls the function <span class="font">active()</span> and assignes it to the variable <span class="font">act</span>. Then, the <span class="font">activation</span> function is able to retrieve the name of the operation. If the value corresponding to the key <span class="font">name</span> in the dictionary (<span class="font">act</span>) is <span class="font">True</span>, this means that the operation is active and so <span class="font">activation</span> returns the parameter <span class="font">function</span> that it takes as argument; if it is <span class="font">False</span>, it returns a sentence warning that the operation is not active.
 		
 		<br>
 		<h3>Webapp</h3>
 		<p><span class="font">Webapp</span> is the module that links the webpage with the Python code. It is based on <span class="font">Flask</span>, which is a web application framework that makes the communication between web server and web applications possible, and declares the interconnections among the web applications.
 			<br>First of all, the function <span class="font">get_df</span> creates an instance of the class <span class="font">DatasetGFF3</span> and returns a dataframe of the instance, which will be used as input in the operations.
-			<br>Secondly, through the <span class="font">route</span> decorator we can register a function to a given URL, stated in the parameter of the <span class="font">route</span> decorator. The function returns a given HTML template, which can be automatically found in the templates folder through the function <span class="font">render_template</span>.
+			<br>Secondly, the module includes the function, <span class="font">operation</span>, that returns a dictionary containing references of the operations. This allows the programme to associate the string of the selected operation to the corresponding function. 
+			<br>Thirdly, through the <span class="font">route</span> decorator we can register a function to a given URL, stated in the parameter of the <span class="font">route</span> decorator. The function returns a given HTML template, which can be automatically found in the templates folder through the function <span class="font">render_template</span>.
 			<br>Lastly, to run the web page we need to instantiate an object of the class <span class="font">Flask</span>, which represents the whole application. Then we apply the function <span class="font">.run()</span> to the object in order to open the web application.
-			<br>The module also includes a dictionary containing references of the operations. This allows the programme to associate the string of the selected operation to the corresponding function. 
+			
 		</p>
 		
 		<br>
@@ -241,7 +242,8 @@
 			</p>
 			<h4>html_database</h4>
 			<p>The database template contains the view of the dataset. The dataframe is created through the  <span class="font">< table ></span> tag. 
-				<br> The first iteration creates the header of the columns. <span class="font">i</span> stands for the columns, while <span class="font">j</span> for the rows.
+				<br> The first iteration creates the header of the columns. 
+				<br> For the next loops <span class="font">i</span> stands for the columns, while <span class="font">j</span> for the rows. 
 				<br> The second iteration creates and fills in the first 10 rows (10 is an arbitrary range set by the developers, but any other number can be inserted). The inner loop is written in such a way that the row stays constant and the column varies at every iteration. At the end of each iteration, we pass to the next row and a second round of iteration starts.
 				<br> Following that, we create a row that prints “…” for every column. This serves to separate the first rows from the last ones.
 				<br> At last, we implement an iteration as the second one, in order to reproduce the last 10 rows of the dataset.
@@ -251,11 +253,12 @@
 			<h4>html_activeoperations</h4>
 			<p>The <span class="font">activeoperations</span> template is constituted by a form for user input that directs the page to <span class="font">html_operation</span> which prints the output of the operation selected.
 				<br>By iterating through a dictionary (written in the file <span class="font">Active.py</span>) only if the corresponding value of the operation is <span class="font">True</span>,  the operation is displayed in the form. Once one active operation is executed, output is shown by directing the page to <span class="font">html_operation</span>.
+				<br> At the bottom, references to the <span class="font">alloperations</span> template and the <span class="font">homepage</span> template are included.
 			</p>
 			
 			<h4>html_alloperations</h4>
 			<p> The <span class="font">alloperations</span> template contains a bulleted list composed of text only.
-				<br>At the bottom references to the <span class="font">activeoperations</span> template and the <span class="font">homepage</span> template are included.
+				<br>At the bottom, references to the <span class="font">activeoperations</span> template and the <span class="font">homepage</span> template are included.
 			</p>
 			
 			<h4>html_operation</h4>
@@ -265,7 +268,8 @@
 			</p>
 			
 			<h4>html_projectdocumentation</h4>
-			<p> The project documentation template contains all the text of the current page. </p>
+			<p> The project documentation template contains all the text of the current page. 
+			<br> At the bottom, references to the <span class="font">homepage</span> template are included. </p>
 		</div>
 
 		<br>
@@ -275,9 +279,9 @@
 			<p>The file contains all the indications for the styles and features of different sections in the <span class="font">html_homepage</span> template.</p>
 
 			<h4>formstyle.css</h4>
-			<p>The file contains the indications for the style of the pages <span class="font">html_activeoperations</span> and <span class="font">html_alloperations</span>.</p>
+			<p>The file contains the indications for the style of the pages <span class="font">html_activeoperations</span>, <span class="font">html_alloperations</span> and <span class="font">html_projectdocumentation</span>.</p>
 
-			<h4>formstyle.css</h4>
+			<h4>tablestyle.css</h4>
 			<p>The file contains indications for the style of the table in the pages <span class="font">html_database</span> and <span class="font">html_operation</span>.</p>
 		</div>
 	
