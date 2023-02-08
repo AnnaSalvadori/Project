@@ -11,4 +11,4 @@ Dependencies
 
 How to use the software
 ---
-To use the software, we provide a GFF3 file called "Homo_sapiens.GRCh38.85.gff3"; you can download it here: https://drive.google.com/drive/folders/1h4VCeUt8kL-E2gviM0h28TgF-tpXmB2q?usp=share_link. The downloaded file has be to put into the folder called "Project-main" that is downloaded from the main page of the project; otherwise, the software won't be able to use it.
+To use the software, we provide a GFF3 file called "Homo_sapiens.GRCh38.85.gff3"; you can download it here: https://drive.google.com/drive/folders/1h4VCeUt8kL-E2gviM0h28TgF-tpXmB2q?usp=share_link. When you download the code and the file, make sure that the GFF3 file is inside the "Project-main" folder; otherwise, the software won't be able to use it.
