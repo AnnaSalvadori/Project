@@ -15,7 +15,7 @@ class Dataset(ABC):
 class DatasetGFF3(Dataset):
     
     def __init__(self, filename):
-        self.__df = DatasetReaderGFF3(filename).ReadDataset()
+        self.__df = DatasetReaderGFF3(filename).readDataset()
     
     @property
     def dataframe(self) -> pd.core.frame.DataFrame:

@@ -6,7 +6,7 @@ from abc import ABC, abstractclassmethod
 class DatasetReader(ABC):
 
     @abstractclassmethod
-    def ReadDataset(self):
+    def readDataset(self):
         pass
 
     
@@ -16,7 +16,7 @@ class DatasetReaderGFF3(DatasetReader):
         self.dataframe = filename
 
 
-    def ReadDataset(self) -> pd.core.frame.DataFrame:
+    def readDataset(self) -> pd.core.frame.DataFrame:
         df = pd.read_csv(
         self.dataframe,
         sep="\t",
