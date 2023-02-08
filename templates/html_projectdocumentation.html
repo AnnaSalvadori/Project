@@ -13,6 +13,7 @@
 			<br>The following documentation presents the structure and the steps for the development of the programme. </p> 
 		</p>
 		
+		<br>
 		<h2> Input & Output </h2>
 		<p> The input for the software is a GFF3 file. Since it only contains annotations of the sequences, and not the actual sequences, its size is only about 37 MB. The data is represented in a simple text format organized in nine columns, which are tab delimited. The different columns represent: </p>
 		<ul>
@@ -31,6 +32,7 @@
 			The output of the operations are dataset objects which are instances of the class Pandas DataFrame
 		</p>
 		
+		<br>
 		<h2> Program Structure </h2>
 		<p> The program is divided in modules - <span class = font>DatasetReader, Dataset, Operations, Active_registry</span> and <span class = font>Webapp</span> - and includes also two folders - templates, containing the html files for the webpages and static, containing the files defining the style of the webpages. </p>
 		<p><i> Libraries used: </i>
@@ -40,6 +42,7 @@
 			<li><span class = font>flask</span></li>
 		</ul></p>
 		
+		<br>
 		<h3> DatasetReader </h3>
 		<p>
 			The <span class = font>DatasetReader</span> module contains two classes: <span class = font>DatasetReader</span> and <span class = font>DatasetReaderGFF</span>.
@@ -64,7 +67,8 @@
 				<li><span class = font>comment=”#”</span>: indicates remainder of line should not be parsed. If found at the beginning of a line, the line will be ignored altogether; </li>
 				<li><span class = font>names=["seq_id","source","type","start","end","score","strand",”phase","attributes"]</span>: a list of column names to use; </li> 
 			</ul>
-			
+		
+		<br>
 		<h3> Dataset </h3>
 		<p>The <span class = font>Dataset</span> module contains two classes to manage the dataset:
 			<ul>
@@ -83,7 +87,9 @@
 			In the constructor, the first argument is <span class = font>self</span> and the second argument is <span class = font>filename</span>. <span class = font>df</span> is a private object attribute that results from applying the <span class = font>ReadDataset</span> method of the 
 			<span class = font>DatasetReaderGFF3</span> class using the filename given as a parameter. <span class = font>df</span> type is pandas DataFrame, that is the type returned by the <span class = font>ReadDataset</span> method.
 			<span class = font>dataframe</span> is a getter method defined inside the <span class = font>DatasetGFF3</span> class. It returns the private attribute <span class = font>df</span>, so the returned value is of type pandas DataFrame. It is decorated with the property <span class = font>decorator</span> in order to make it accessible as an attribute, and not as a method.
-			
+		
+
+		<br><br><br>
 		<h3>Operations</h3>	
 		<p>The <span class = font>Operations</span> module contains all the operations that can be done on the GFF3 dataset. Each function is decorated by the <span class = font>active_decorator</span> decorator. Whenever the decorator is activated, it takes the function as a parameter. </p>
 		
@@ -111,7 +117,8 @@
 		
 		<h4>count_entries</h4>
 		<p> Takes the dataframe as parameter and returns a pandas DataFrame containing the number of features provided by the same type.
-			<br> The code is identical to that for <span class="font">count_features</span> except for the fact that type is considered instead of source.
+			<br>Firstly, the features are counted through the function <span class="font">.value_counts()</span>, whose output is assigned to the variable “counts”. To obtain a list of all the indexes we applied to “counts” the functions <span class="font">.index.tolist()</span> which output is assigned to the variable “types”. 
+			<br>Following that, we created an empty dataframe with two columns named “Type” and “Count”. With the use of an iterator, to the initially empty dataframe we concatenated a new dataframe that takes the values from “types” and “counts” in the proper order.
 		</p>
 		
 		<h4>entire_chromosome</h4>
@@ -131,7 +138,11 @@
 		
 		<h4>count_entries_ens_hav_enshav</h4>
 		<p>Takes the dataframe as parameter and returns a pandas DataFrame containing the number of features provided by the same type, while only taking in consideration entries from source <span class="font">ensembl</span>, <span class="font">havana</span> and <span class="font">ensembl_havana</span>.
-			<br> Firstly, we created a dataframe with only entries from source <span class="font">ensembl</span>, <span class="font">havana</span> and <span class="font">ensembl_havana</span> as in the function <span class="font">entries_ens_hav_enshav</span>. Then, to the new dataframe we applied the code for the function <span class="font">count_entries</span>.
+			<br> Firstly, we created a dataframe with only entries from source <span class="font">ensembl</span>, <span class="font">havana</span> and <span class="font">ensembl_havana</span>:
+			by storing in a variable a list comprehension that considers the sources <span class="font">ensembl</span>, <span class="font">havana</span> and <span class="font">ensembl_havana</span> as <span class="font">True</span> and the remaining sources as <span class="font">False</span> 
+			and then slicing the dataframe with the <span class="font">loc</span> function that considers the three sources simultaneously.
+			<br> Then, starting from the new dataframe, the features are counted through the function <span class="font">.value_counts()</span>, whose output is assigned to the variable “counts”. To obtain a list of all the indexes we applied to “counts” the functions <span class="font">.index.tolist()</span> which output is assigned to the variable “sources”. 
+			<br> Following that, we created an empty dataframe with two columns named "Operation" and “Count”. With the use of an iterator, to the initially empty dataframe we concatenated a new dataframe that takes the values from “sources” and “counts” in the proper order.
 		</p>
 		
 		<h4>gene_names</h4>
@@ -139,6 +150,8 @@
 			<br>First of all, we created a new dataframe containing only entries with type “gene”. Then we created an empty dataframe with one only column named “Names”. Through a for loop, we concatenated dataframes containing the name of the gene derived from different slicing operations.
 		</p>
 		
+
+		<br>
 		<h3> Active_registry </h3>
 		<p> The <span class="font">Active_registry</span> module is used to manage the state of the operations, that can be active or inactive. It contains the class <span class="font">Active</span> and the decorator <span class="font">active_decorator</span>.</p>
 		
@@ -153,6 +166,7 @@
 			<br> Then, the activation function is able to retrieve the name of the function. If the value corresponding to the key “name” in the dictionary of the <span class="font">Active</span> instanciation is <span class="font">True</span> this means that the function is active and so the activation returns the parameter function that takes as argument; if it is <span class="font">False</span>, it returns a sentence warning that the function is not active.
 		</p>
 		
+		<br>
 		<h3>Webapp</h3>
 		<p><span class="font">Webapp</span> is the module that links the webpage with the Python code. It is based on <span class="font">Flask</span>, which is a web application framework that makes the communication between web server and web applications possible, and declares the interconnections among the web applications.
 			<br>First of all, the function <span class="font">get_df</span> creates an instance of the class <span class="font">DatasetGFF3</span> and returns a dataframe of the instance, which will be used as input in the operations.
@@ -161,6 +175,7 @@
 			<br>The module also includes a dictionary containing references of the operations. This allows the programme to associate the string of the selected operation to the corresponding function. 
 		</p>
 		
+		<br>
 		<h3>templates</h3>
 		<div style="padding-left:10px">
 			<h4>html_homepage</h4>
@@ -196,6 +211,8 @@
 			<h4>html_projectdocumentation</h4>
 			<p> The project documentation template contains all the text of the current page </p>
 		</div>
+
+		<br>
 		<h3> static </h3>
 		<div style="padding-left:10px">
 			<h4>style.css</h4>
@@ -208,6 +225,7 @@
 			<p>The file contains indications for the style of the table in the pages <span class="font">html_database</span> and <span class="font">html_operation</span>.</p>
 		</div>
 	
+	<br>
 	<h2>Conclusion</h2>
 	<p>The development of the project made use of different programming languages, such as Python, HTML and CSS. The project aimed to divide a task into its components, understand the function of each component and the mechanism of their interconnections. The understanding of the abstract function, the Pandas dataframe, Flask, Jinjia2, …, was required and achieved for the correct functioning of the program.
 			
