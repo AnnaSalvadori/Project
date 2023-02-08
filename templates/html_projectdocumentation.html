@@ -2,12 +2,14 @@
 <html>
 	<head>
 		<title> Project Documentation </title>
+		<link rel="stylesheet" type="text/css" href= "{{url_for('static', filename = 'formstyle.css')}}" />
 		<style>
 			.font {font-family: "courier new";}
 			h1, h2, h3, h4, p, li{font-family: "charter"}
 		</style>
 	</head>
 	<body>
+		<div class="documentation">
 		<h1> Project Documentation </h1>
 		<p> The project’s aim consists in parsing the GFF3 data format. The information derived can then be processed for further genomics analysis through the use of different operations provided by the software. The project can be viewed by the user in the form of a web page. To open the web page, one needs to run the Python file code “Webapp.py”. In the terminal, a reference will be generated which will link to the web page.
 			<br>The following documentation presents the structure and the steps for the development of the programme. </p> 
@@ -232,5 +234,7 @@
 	<p><form action = "/" target = "_self">
 		<button class = "button" type = "submit" value = "home" style="margin-left: 47.5%; margin-right: 45%;"><b> Home </b></button>
 	</form></p>
+
+	</div>
 	</body>
 </html>
