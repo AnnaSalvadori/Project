@@ -11,7 +11,7 @@
 	<body>
 		<div class="documentation">
 		<h1> Project Documentation </h1>
-		<p> The project’s aim consists in parsing the GFF3 data format. The information derived can then be processed for further genomics analysis through the use of different operations provided by the software. The project can be viewed by the user in the form of a web page. To open the web page, one needs to run the Python file code “Webapp.py”. In the terminal, a reference will be generated which will link to the web page.
+		<p> The project’s aim consists in parsing the GFF3 data format. The information derived can then be processed for further genomics analysis through the use of different operations provided by the software. The project can be viewed by the user in the form of a web page. To open the web page, one needs to run the Python file code <span class = font>Webapp.py</span>. In the terminal, a reference will be generated which will link to the web page.
 			<br>The following documentation presents the structure and the steps for the development of the program. </p> 
 		</p>
 
@@ -24,7 +24,7 @@
 				<ul>
 					<li><i> Active operations </i>
 						<br> All the active operations are listed. Only one can be selected. After submission, the page of the executed operation is opened. The output of the operation is represented in a dataframe.
-						<br> However, not all operations may be active (further explanation in the following sections). Therefore, by clicking on “List of all operations” in the “Active operations” page, the user will be directed to a page that lists all the operations existent. 
+						<br> However, not all operations may be active (further explanation in the following sections). Therefore, by clicking on <span class = font>List of all operations</span> in the <span class = font>Active operations</span> page, the user will be directed to a page that lists all the operations existent. 
 					</li>
 
 					<li><i> GFF3 dataset </i>
@@ -35,7 +35,7 @@
 						<br> It contains the current page
 					</li>
 				</ul>
-				<div style="padding-left:70px">
+				<div style="padding-left:70px; font-family:charter">
 					At the end of some pages a clickable “Home” button is present, that takes the user back to the first page.
 				</div>
 				</p>
@@ -59,12 +59,8 @@
 		</ul>
 		<p> “.” indicates that the field is undefined. <br>
 			For the operations to manage the data, this last one must be read by a dataset reader which is dependent on Pandas library(more explanation will be followed).
-			The output of the operations are dataset objects which are instances of the class Pandas DataFrame
+			The output of the operations are dataset objects which are instances of the class <span class = font>Pandas DataFrame</span>
 		</p>
-		
-		<br>
-		<h2> Program Structure </h2>
-		<p> The program is divided in modules - <span class = font>DatasetReader, Dataset, Operations, Active_registry</span> and <span class = font>Webapp</span> - and includes also two folders - templates, containing the html files for the webpages and static, containing the files defining the style of the webpages. </p>
 		<p><i> Libraries used: </i>
 		<ul>
 			<li><span class = font>pandas</span></li>
@@ -72,6 +68,20 @@
 			<li><span class = font>flask</span></li>
 		</ul></p>
 		
+		<br>
+		<h2> Program Structure </h2>
+		<p> The program is divided in modules - <span class = font>DatasetReader, Dataset, Operations, Active_registry</span> and <span class = font>Webapp</span> - and includes also two folders - templates, containing the html files for the webpages and static, containing the files defining the style of the webpages. </p>
+		
+		<figure>
+			<img src="UML_class_diagram.jpeg" alt="UML class diagram">
+			<figcaption style="font-size:12px; color:grey; ">UML class diagram</ficaption>
+		</figure>
+		
+		<p> In the UML class diagram above, it is possible to visualize the classes, the relations between them and their attributes and methods. Four classes are present: <span class = font>Dataset</span>, <span class = font>DatasetGFF3</span>, <span class = font>DatasetReader</span> and <span class = font>DatasetReaderGFF3</span>.
+			<br> <span class = font>Dataset</span> is a general interface with a public method called <span class = font>dataframe()</span>, that is not implemented. <span class = font>DatasetGFF3</span> is a concrete class that inherits from the <span class = font>Dataset</span> class. The relation between <span class = font>Dataset</span> and <span class = font>DatasetGFF3</span> is a realization, which is a relation between an interface (<span class = font>Dataset</span>) and a class (<span class = font>DatasetGFF3</span>) implementing such an interface. <span class = font>Dataset</span> is the provider that exposes an interface, while <span class = font>DatasetGFF3</span> realizes the interface providing an implementation. The <span class = font>DatasetGFF3</span> class has a private attribute, <span class = font>df</span>, of type <span class = font>DataFrame</span>, and a public method, <span class = font>dataframe()</span>, that returns a <span class = font><i>DataFrame</i></span> object. 
+			<br> <span class = font>DatasetReader</span> is a general interface with a public method called  <span class = font>readDataset()</span>, that is not implemented.  <span class = font>DatasetReaderGFF3</span> is a concrete class that inherits from the  <span class = font>DatasetReader</span> class. The relation between  <span class = font>DatasetReader</span> and  <span class = font>DatasetReaderGFF3</span> is a realization. The  <span class = font>DatasetReaderGFF3</span> class has a private attribute,  <span class = font>dataframe</span>, of type  <span class = font><i>str</i></span>, and a public method,  <span class = font>readDataset()</span>, that returns a  <span class = font><i>DataFrame</i></span> object.
+			<br> <span class = font>DatasetGFF3</span> and <span class = font>DatasetReaderGFF3</span> are related through a dependency, which is also called supplier-client relationship; it is a strong relation. <span class = font>DatasetGFF3</span> uses a method of the <span class = font>DatasetReaderGFF3</span> class for its implementation; therefore, modifications of the <span class = font>DatasetReaderGFF3</span> may impact the <span class = font>DatasetGFF3</span> class.
+		</p>
 		<br>
 		<h3> DatasetReader </h3>
 		<p>
@@ -86,6 +96,11 @@
 		<p> The class <span class = font>DatasetReader</span> is a general interface; it is an abstract class that inherits from <span class = font>ABC</span>. Abstract classes are derived classes of the <span class = font>ABC</span> class, so they must be declared as subclasses of <span class = font>ABC</span>. The <span class = font>ABC</span> module provides the infrastructure for defining Abstract Base Classes (<span class = font>ABC</span>s) in Python. This module provides the metaclass <span class = font>ABCMeta</span> for defining <span class = font>ABC</span>s and a helper class <span class = font>ABC</span> to alternatively define <span class = font>ABC</span>s through inheritance. </p>
 		<p> <span class = font>ReadDataset</span> is a method that reads the dataset; in the case of the <span class = font>DatasetReader</span> class, the method is not implemented. This means that it is abstract and marked explicitly with a decorator called abstractmethod, which is a decorator indicating abstract methods. </p>
 		
+		<figure>
+			<img src="CRCCard_DatasetReader" alt="CRC Card of the class DatasetReader">
+			<figcaption style="font-size:12px; color:grey;"> CRC Card of the class DatasetReader </figcaption>
+		</figure>
+		
 		<h4> DatasetReaderGFF3 </h4>
 		<p>  The class <span class = font>DatasetReaderGFF3</span> is a specific reader for GFF3 datasets and inherits from the general interface <span class = font>DatasetReader</span>.
 			In the constructor, the first argument is self (refers to the object currently being created) and the second argument is filename. dataframe is a public attribute containing the filename taken as argument.
@@ -97,6 +112,11 @@
 				<li><span class = font>comment=”#”</span>: indicates remainder of line should not be parsed. If found at the beginning of a line, the line will be ignored altogether; </li>
 				<li><span class = font>names=["seq_id","source","type","start","end","score","strand",”phase","attributes"]</span>: a list of column names to use; </li> 
 			</ul>
+		
+		<figure>
+			<img src="CRCCard_DatasetReaderGFF3" alt="CRC Card of the class DatasetReaderGFF3">
+			<figcaption style="font-size:12px; color:grey;"> CRC Card of the class DatasetReaderGFF3 </figcaption>
+		</figure>
 		
 		<br>
 		<h3> Dataset </h3>
@@ -112,14 +132,24 @@
 			<span class = font>dataframe</span> is an abstract getter method, marked with the <span class = font>abstractmethod</span> decorator. 
 		</p>
 		
+		<figure>
+			<img src="CRCCard_Dataset" alt="CRC Card of the class Dataset">
+			<figcaption style="font-size:12px; color:grey;"> CRC Card of the class Dataset </figcaption>
+		</figure>
+		
 		<h4>DatasetGFF3</h4>
 		<p>The class <span class = font>DatasetGFF3</span> is a specific class for GFF3 datasets and inherits from the general interface <span class = font>Dataset</span>.
 			In the constructor, the first argument is <span class = font>self</span> and the second argument is <span class = font>filename</span>. <span class = font>df</span> is a private object attribute that results from applying the <span class = font>ReadDataset</span> method of the 
 			<span class = font>DatasetReaderGFF3</span> class using the filename given as a parameter. <span class = font>df</span> type is pandas DataFrame, that is the type returned by the <span class = font>ReadDataset</span> method.
 			<span class = font>dataframe</span> is a getter method defined inside the <span class = font>DatasetGFF3</span> class. It returns the private attribute <span class = font>df</span>, so the returned value is of type pandas DataFrame. It is decorated with the property <span class = font>decorator</span> in order to make it accessible as an attribute, and not as a method.
+		</p>
 		
+		<figure>
+			<img src="CRCCard_DatasetGFF3" alt="CRC Card of the class DatasetGFF3">
+			<figcaption style="font-size:12px; color:grey;"> CRC Card of the class DatasetGFF3 </figcaption>
+		</figure>
 
-		<br><br><br>
+		<br><br>
 		<h3>Operations</h3>	
 		<p>The <span class = font>Operations</span> module contains all the operations that can be done on the GFF3 dataset. Each function is decorated by the <span class = font>active_decorator</span> decorator. Whenever the decorator is activated, it takes the function as a parameter. </p>
 		
@@ -183,18 +213,13 @@
 
 		<br>
 		<h3> Active_registry </h3>
-		<p> The <span class="font">Active_registry</span> module is used to manage the state of the operations, that can be active or inactive. It contains the class <span class="font">Active</span> and the decorator <span class="font">active_decorator</span>.</p>
+		<p>The <span class="font">Active_registry</span> module is used to manage the state of the operations, that can be active or inactive. It contains two functions: <span class="font">active</span> and the decorator <span class="font">active_decorator</span>.</p>
 		
-		<h4>Active</h4>
-		<p>The Active class is used to manage the active/inactive state of the operations.
-			<br>In the constructor, the private attribute <span class="font">d</span> is defined as a dictionary containing the names of the operations as values and <span class="font">True</span> or <span class="font">False</span> as keys. <span class="font">True</span> is used to mark an operation as active, <span class="font">False</span> is used to mark an operation as inactive.
-			<br>The <span class="font">dictionary</span> method takes <span class="font">self</span> as argument and returns the private attribute <span class="font">d</span>, so it is a getter and it is decorated with the property decorator in order to make it accessible as an attribute, and not as a method.
-		</p>
+		<h4>active</h4>
+		<p>The function <span class="font">active</span> is used to manage the active/inactive state of the operations. It creates a dictionary that is assigned to the variable <span class="font">d</span>. The dictionary contains the names of the operations as keys and <span class="font">True</span> or <span class="font">False</span> as values. <span class="font">True</span> is used to mark an operation as active, <span class="font">False</span> is used to mark an operation as inactive. The function <span class="font">active</span> returns the dictionary <span class="font">d</span>.
 		
 		<h4>active_decorator</h4>
-		<p> The <span class="font">active_decorator</span> takes a function as parameter, that in our case is one of the operations implemented in the <span class="font">Operations</span> module and returns the nested function, <span class="font">activation(*args)</span>. The decorator instanciates an object of the class <span class="font">Active</span>.
-			<br> Then, the activation function is able to retrieve the name of the function. If the value corresponding to the key “name” in the dictionary of the <span class="font">Active</span> instanciation is <span class="font">True</span> this means that the function is active and so the activation returns the parameter function that takes as argument; if it is <span class="font">False</span>, it returns a sentence warning that the function is not active.
-		</p>
+		<p> The <span class="font">active_decorator</span> takes a function as parameter, that in our case is one of the operations implemented in the <span class="font">Operations</span> module and returns the nested function, <span class="font">activation(*args)</span>. First of all, the decorator calls the function <span class="font">active()</span> and assignes it to the variable <span class="font">act</span> (in this way, <span class="font">act</span> is the dictionary). Then, the activation function is able to retrieve the name of the function. If the value corresponding to the key <span class="font">name</span> in the dictionary (<span class="font">act</span>) is <span class="font">True</span>, this means that the function is active and so the activation returns the parameter function that it takes as argument; if it is <span class="font">False</span>, it returns a sentence warning that the function is not active.
 		
 		<br>
 		<h3>Webapp</h3>
@@ -239,7 +264,7 @@
 			</p>
 			
 			<h4>html_projectdocumentation</h4>
-			<p> The project documentation template contains all the text of the current page </p>
+			<p> The project documentation template contains all the text of the current page. </p>
 		</div>
 
 		<br>
