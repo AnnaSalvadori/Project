@@ -52,3 +52,21 @@ li {
 	text-align: left;
 	margin-left: 5%;
 	}
+
+.imgUML {
+  padding-left: 70px;
+  width: 80%;
+  }
+
+.figcaptionUML {
+  padding-left: 350px;
+}
+
+.imgCRC {
+  padding-left: 230px;
+  width: 40%;
+  }
+
+.figcaptionCRC {
+  padding-left: 220px;
+}
