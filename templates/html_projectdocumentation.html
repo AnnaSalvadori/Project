@@ -238,7 +238,7 @@
 			<h4>html_homepage</h4>
 			<p> It is the template for the homepage. Through the <span class="font">< div ></span> tag, the template is divided into different sections that are styled with CSS. 
 				<br> The left panel contains a description of the application and of the available views.
-				<br> The right panel contains clickable bottons that contain references to the other views and redirect, respectively, to <span class="font">html_activeoperations</span>, <span class="font">html_database</span>, and <span class="font">html_projectdocumentation</span>.
+				<br> The right panel contains clickable buttons that contain references to the other views and redirect, respectively, to <span class="font">html_activeoperations</span>, <span class="font">html_database</span>, and <span class="font">html_projectdocumentation</span>.
 			</p>
 			<h4>html_database</h4>
 			<p>The database template contains the view of the dataset. The dataframe is created through the  <span class="font">< table ></span> tag. 
@@ -247,18 +247,15 @@
 				<br> The second iteration creates and fills in the first 10 rows (10 is an arbitrary range set by the developers, but any other number can be inserted). The inner loop is written in such a way that the row stays constant and the column varies at every iteration. At the end of each iteration, we pass to the next row and a second round of iteration starts.
 				<br> Following that, we create a row that prints “…” for every column. This serves to separate the first rows from the last ones.
 				<br> At last, we implement an iteration as the second one, in order to reproduce the last 10 rows of the dataset.
-				<br> At the bottom, a reference to the homepage is added.
 			</p>
 			
 			<h4>html_activeoperations</h4>
 			<p>The <span class="font">activeoperations</span> template is constituted by a form for user input that directs the page to <span class="font">html_operation</span> which prints the output of the operation selected.
 				<br>By iterating through a dictionary (written in the file <span class="font">Active.py</span>) only if the corresponding value of the operation is <span class="font">True</span>,  the operation is displayed in the form. Once one active operation is executed, output is shown by directing the page to <span class="font">html_operation</span>.
-				<br> At the bottom, references to the <span class="font">alloperations</span> template and the <span class="font">homepage</span> template are included.
 			</p>
 			
 			<h4>html_alloperations</h4>
 			<p> The <span class="font">alloperations</span> template contains a bulleted list composed of text only.
-				<br>At the bottom, references to the <span class="font">activeoperations</span> template and the <span class="font">homepage</span> template are included.
 			</p>
 			
 			<h4>html_operation</h4>
@@ -268,8 +265,7 @@
 			</p>
 			
 			<h4>html_projectdocumentation</h4>
-			<p> The project documentation template contains all the text of the current page. 
-			<br> At the bottom, references to the <span class="font">homepage</span> template are included. </p>
+			<p> The project documentation template contains all the text of the current page. </p>
 		</div>
 
 		<br>
@@ -290,7 +286,7 @@
 	<p>The development of the project made use of different programming languages, such as Python, HTML and CSS. The project aimed to divide a task into its components, understand the function of each component and the mechanism of their interconnections. The understanding of the abstract function, the Pandas dataframe, Flask, Jinja2 was required and achieved for the correct functioning of the program.
 			
 	<p><form action = "/" target = "_self">
-		<button class = "button" onclick="self.close()" type = "submit" value = "home" style="margin-left: 47.5%; margin-right: 45%;"><b> Home </b></button>
+		<button class = "button" type = "submit" value = "home" style="margin-left: 47.5%; margin-right: 45%;"><b> Home </b></button>
 	</form></p>
 
 	</div>
