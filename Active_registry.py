@@ -1,4 +1,4 @@
-def Active():
+def active():
 	d = {
 		'info': True,
 		'seqID' : True,
@@ -15,7 +15,7 @@ def Active():
 		
 
 def active_decorator(function):
-	act = Active()
+	act = active()
 	def activation(*arg):
 		name = str(function).split()[1]
 		if act[name]:
