@@ -31,7 +31,7 @@ def homepage():
 	
 @webapp.route('/html_activeoperations.html')
 def active_operations():
-	d = Active().dictionary
+	d = Active()
 	return render_template('html_activeoperations.html', dic = d)
 
 @webapp.route('/html_operation.html')
