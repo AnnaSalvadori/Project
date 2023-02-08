@@ -13,12 +13,12 @@ class DatasetReader(ABC):
 ''' Specific dataset reader for GFF3'''
 class DatasetReaderGFF3(DatasetReader):
     def __init__(self, filename): 
-        self.dataframe = filename
+        self.__dataframe = filename
 
 
     def readDataset(self) -> pd.core.frame.DataFrame:
         df = pd.read_csv(
-        self.dataframe,
+        self.__dataframe,
         sep="\t",
         comment="#",
         names=[
