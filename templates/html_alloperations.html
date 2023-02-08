@@ -9,16 +9,16 @@
 		<h1> Full list of operations </h1>
 		<p>
             <ul>
-                <li>info</li>
-                <li>seqID</li>
-                <li>type_operation</li>
-                <li>count_features</li>
-                <li>count_entries</li>
-                <li>entire_chromosome</li>
-                <li>count_supercontigs</li>
-                <li>entries_ens_hav_enshav</li>
-                <li>count_entries_ens_hav_enshav</li>
-                <li>gene_names</li>
+                <li> Info: <br> returns the name and the type of each column of the dataset </li> <br> <br>
+				<li> Sequence ID: <br> returns the list of unique sequence IDs available in the dataset </li> <br> <br>
+				<li> Type Operation: <br> returns the unique types of operations available in the dataset </li> <br> <br>
+				<li>Count Features: <br> returns the number of features provided by the same source </li> <br> <br>
+				<li>Count Entries: <br> returns the number of entries for each type of operation </li> <br> <br>
+				<li>Get Entire Chromosomes: <br> returns a new dataset containing only the information about entire chromosomes (source: GRCh38) </li> <br> <br>
+				<li>Count Supercontigs: <br> calculates the fraction of unassembled sequences (supercontigs) over entire chromosomes </li> <br> <br>
+				<li>Entries from sources ensembl, havana, and ensembl_havana: <br> returns a new dataset containing entries from the sources ensembl, havana, and ensembl_havana </li> <br> <br>
+				<li>Count Entries from ensembl, havana, and ensembl_havana: <br> returns the number of entries for each type of operation in the dataset containing only entries from the sources ensembl, havana, ensembl_havana</li> <br> <br>
+				<li>Gene Names: <br> returns the names of genes in the dataset containing only entries from the sources ensembl, havana, ensembl_havana </li> <br> <br>
             </ul>
         </p>
     </div>
