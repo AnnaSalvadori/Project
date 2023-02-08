@@ -7,14 +7,42 @@
 	</head>
 
 	<body>
-		
-		<h1> Executed operation: {{selection}} </h1>
-		<p> The selected operation has been executed; below you can see its output. <br>
+
+		{% if selection == 'info' %}
+			<h1> Executed operation: <span class="color">Info</span> </h1>
+			<p> The table shows the name and the type of each column of the dataset. <br>
+		{% elif selection == 'seqID' %}
+			<h1> Executed operation: <span class="color">Sequence ID</span> </h1>
+			<p> The table shows the list of unique sequence IDs available in the dataset. <br>
+		{% elif selection == 'type_operation' %}
+			<h1> Executed operation: <span class="color">Type Operation</h1></span>
+			<p> The table shows the unique types of operations available in the dataset. <br>
+		{% elif selection == 'count_features' %}
+			<h1> Executed operation: <span class="color">Count Features</span> </h1>
+			<p> The table shows the number of features provided by the same source. <br>
+		{% elif selection == 'count_entries' %}
+			<h1> Executed operation: <span class="color">Count Entries</span> </h1>
+			<p> The table shows the number of entries for each type of operation. <br>
+		{% elif selection == 'entire_chromosome' %}
+			<h1> Executed operation: <span class="color">Get Entire Chromosomes</span> </h1>
+			<p> The table new a dataset containing only the information about entire chromosomes (source: GRCh38) . <br>
+		{% elif selection == 'count_supercontigs' %}
+			<h1> Executed operation: <span class="color">Count Supercontigs</span> </h1>
+			<p> The table shows the calculated fraction of unassembled sequences (supercontigs) over entire chromosomes . <br>
+		{% elif selection == 'entries_ens_hav_enshav' %}
+			<h1> Executed operation: <span class="color">Entries from sources ensembl, havana, and ensembl_havana</span> </h1>
+			<p> The table shows a new dataset containing entries from the sources ensembl, havana, and ensembl_havan. <br>
+		{% elif selection == 'count_entries_ens_hav_enshav' %}
+			<h1> Executed operation: <span class="color">Count Entries from ensembl, havana, and ensembl_havana</span> </h1>
+			<p> The table shows the number of entries for each type of operation in the dataset containing only entries from the sources ensembl, havana, ensembl_havana. <br>
+		{% elif selection == 'gene_names' %}
+			<h1> Executed operation: <span class="color">Gene Names</span> </h1>
+			<p> The table shows the names of genes in the dataset containing only entries from the sources ensembl, havana, ensembl_havana. <br>
+		{% endif %}
 		
 		
 		 <!-- dataframe -->
-			<p> The new dataframe is <br> 
-				{% if out.shape[0] < 20 %}
+			{% if out.shape[0] < 20 %}
 				<table class="dataframe">
 					<tr>
 						<th style="background-color: darkseagreen;">Index</th> 
