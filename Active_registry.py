@@ -12,17 +12,18 @@ class Active:
             'count_entries_ens_hav_enshav' : True,
             'gene_names' : True
         }
-        
-	def get_dic(self):
+
+	@property    
+	def dictionary(self):
 		return self.__d  
-        
+		
+
 def active_decorator(function):
 	act = Active()
 	def activation(*arg):
 		name = str(function).split()[1]
-		if act.get_dic()[name]:
+		if act.dictionary[name]:
 			return function(*arg)
 		else: 
 			return f'The operation {name} is not active'
-
 	return activation
